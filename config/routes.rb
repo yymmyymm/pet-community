@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :public do
-    get 'posts/index'
-    get 'posts/show'
-  end
   # 顧客用
 # URL /customers/sign_in ...
 devise_for :customers,skip: [:passwords], controllers: {
@@ -20,9 +16,12 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 scope module: :public do
   root to: 'homes#top'
   get '/about'=>'homes#about'
+  resources :post_images, only: [:new, :create, :index, :show, :destory]
 end
 
 resources :posts, only: [:index, :show]
+
+
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

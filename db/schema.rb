@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 2022_10_02_085657) do
 
   create_table "post_images", force: :cascade do |t|
     t.integer "customer_id", null: false
-    t.integer "genre_id", null: false
+    t.integer "genre_id"
     t.string "title", null: false
     t.text "caption"
     t.boolean "is_deleted", default: false, null: false

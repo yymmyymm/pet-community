@@ -5,6 +5,7 @@ class ChangeColumnToAllowNull < ActiveRecord::Migration[6.1]
     change_column :customers, :address,:string, null: true
     change_column :customers, :phone,:string, null: true
     change_column :customers, :introduce,:string, null: true
+    
   end
 
   def down
@@ -13,5 +14,6 @@ class ChangeColumnToAllowNull < ActiveRecord::Migration[6.1]
     change_column :customers, :address,:string, null: true
     change_column :customers, :phone,:string, null: true
     change_column :customers, :introduce,:string, null: true
+    
   end
 end

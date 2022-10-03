@@ -23,6 +23,9 @@
         <% if customer_signed_in? %>
           <p class = 'nav-link text-light'>ようこそ、<%= current_customer.pen_name %>さん</p>
         <% end %>
+        <li>
+          <%= link_to '投稿フォーム', new_post_image_path %>
+        </li>
         <li class="nav-item">
           <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-light' %>
         </li>
