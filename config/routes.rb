@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   # 顧客用
 # URL /customers/sign_in ...
 devise_for :customers,skip: [:passwords], controllers: {
@@ -16,8 +17,16 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 scope module: :public do
   root to: 'homes#top'
   get '/about'=>'homes#about'
-  resources :post_images, only: [:new, :create, :index, :show, :destory]
+  resources :post_images, only: [:new, :create, :index, :show, :destroy]
+  resources :customers,only:[:show, :edit, :update] do
+      collection do
+        get 'unsubscribe'
+        patch 'withdrawal'
+      end
+  end
 end
+
+
 
 resources :posts, only: [:index, :show]
 
