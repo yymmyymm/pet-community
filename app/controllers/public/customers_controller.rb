@@ -6,6 +6,11 @@ class Public::CustomersController < ApplicationController
     @post_images = @customer.post_images.page(params[:page])
   end
 
+  def index
+    @customers = Customer.all
+    @post_image = PostImage.find_by(params[:id])
+  end
+
   def edit
     @customer = current_customer
   end

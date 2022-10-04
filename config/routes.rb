@@ -21,11 +21,14 @@ scope module: :public do
     resource :favorites, only: [:create, :destroy]
     resources :post_comments, only: [:create, :destroy]
   end
-  resources :customers,only:[:show, :edit, :update] do
+  resources :customers,only:[:show, :index, :edit, :update] do
       collection do
         get 'unsubscribe'
         patch 'withdrawal'
       end
+    resource :relationships, only: [:create, :destroy]
+      get "followings" => "relationships#followings", as: "followings"
+      get "followers" => "relationships#followers", as: "followers"
   end
 end
 
