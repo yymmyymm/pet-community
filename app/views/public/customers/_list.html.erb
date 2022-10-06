@@ -1,0 +1,14 @@
+<% customers.each do |customer| %>
+    <tr>
+      <td><%= image_tag customer.get_profile_image(100,100) %></td>
+      <td><%= customer.pen_name %></td>
+      <td>フォロワー数: <%= customer.followers.count %></td>
+      <tr>
+      <th>フォロワー</th>
+      <th><%= link_to customer.followers.count, customer_followers_path(customer) %></th>
+      </tr>
+      <%= render "public/favorites/btn", post_image: @post_image %>
+      <td><%= render "public/relationships/btn", customer: customer %></td>
+      <td><%= link_to "show", customer, class: "customer_#{customer.id}" %></td>
+    </tr>
+  <% end %>

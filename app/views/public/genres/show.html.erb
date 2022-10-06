@@ -1,0 +1,16 @@
+<div class='container'>
+  <div class='row'>
+    <div class="col-md-10">
+      <h4 class="mt-5"><strong><%= @genre.name %>一覧</strong><span class="font">(全<%= @genre_post_images.count %>件)</span></h4>
+      <div class="row mx-auto">
+		  	<% @genre_post_images.each do |post_image| %>
+			  	<%= link_to post_image_path(post_image.id), class: "col-3 text-center text-dark text-nowrap mt-5" do %>
+						<%= image_tag post_image.image, :size => '200x150' %><br>
+						<%= post_image.name %><br>
+					<% end %>
+			<% end %>
+			</div>
+			<div class="col-md-5 mx-auto"><%= paginate @genre_post_images %></div>
+		</div>
+	</div>
+</div>

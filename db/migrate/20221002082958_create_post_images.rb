@@ -5,6 +5,7 @@ class CreatePostImages < ActiveRecord::Migration[6.1]
       t.integer :genre_id
       t.string :title, null: false
       t.text :caption
+      t.string :category
       t.boolean :is_deleted, null: false, default: false
       t.timestamps null: false
     end

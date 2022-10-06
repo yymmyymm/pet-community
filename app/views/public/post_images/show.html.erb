@@ -1,5 +1,14 @@
 <h1>show</h1>
 
+  <% @post_tags.each do |tag| %>
+    <%= link_to tag.name,search_tag_path(tag_id: tag.id)%>
+    <%="(#{tag.post_images.count})" %>
+  <% end %>
+  <% if @post_image.customer == current_customer %>
+    <%= link_to "タグ編集", edit_post_image_path(@post_image.id) %>
+  <% end %>
+
+
 <div>
   <%= image_tag @post_image.get_image %>
   <p>タイトル：<%= @post_image.title %></p>
@@ -11,9 +20,7 @@
     <%= link_to "削除", post_image_path(@post_image), method: :delete %>
   <% end %>
 <%= render "public/favorites/btn", post_image: @post_image %>
-
 </div>
-
 <div>
   <p>コメント件数：<%= @post_image.post_comments.count %></p>
   <% @post_image.post_comments.each do |post_comment| %>

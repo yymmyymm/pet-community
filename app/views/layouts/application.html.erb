@@ -17,6 +17,7 @@
             <% if customer_signed_in? %>
               <p class = 'nav-link text-light'>ようこそ、<%= current_customer.pen_name %>さん</p>
             <% end %>
+            <div><%= render 'public/searches/form' %></div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -25,33 +26,36 @@
 
             <ul class="navbar-nav ml-auto">
               <% if admin_signed_in? %>
-                <li class="nav-item">
+                <li class="text-right">
                   <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link text-dark' %>
                 </li>
-                <li class="nav-item">
+                <li class="text-right">
+                  <%= link_to "会員一覧", admin_customers_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="text-right">
                   <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
                 </li>
               <% elsif customer_signed_in? %>
-              <li class="nav-item">
+              <li class="text-right">
                 <%= link_to '投稿一覧', post_images_path, class: 'nav-link text-dark' %>
               </li>
-              <li class="nav-item">
+              <li class="text-right">
                 <%= link_to 'ペット一覧', customers_path, class: 'nav-link text-dark' %>
               </li>
-              <li class="nav-item">
+              <li class="text-right">
                 <%= link_to '投稿フォーム', new_post_image_path, class: 'nav-link text-dark' %>
               </li>
-              <li class="nav-item">
+              <li class="text-right">
                 <%= link_to 'マイページ', customer_path(current_customer.id), class: 'nav-link text-dark' %>
               </li>
-              <li class="nav-item">
+              <li class="text-right">
                 <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %>
               </li>
               <% else %>
-              <li class="nav-item">
+              <li class="text-right">
                 <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link text-dark' %>
               </li>
-              <li class="nav-item">
+              <li class="text-right">
                 <%= link_to "ログイン", new_customer_session_path, class: 'nav-link text-dark' %>
               </li>
               <% end %>

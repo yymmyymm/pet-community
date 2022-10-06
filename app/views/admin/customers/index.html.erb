@@ -1,0 +1,12 @@
+ <h4><strong>会員一覧</strong></h4>
+
+ <% @customers.each do |customer| %>
+    <%= customer.id %>
+    <%= link_to "#{customer.name}", admin_customer_path(customer.id) %>
+    <td><%= customer.email %></td>
+      <% if customer.is_deleted == true %>
+        <td class="text-secondary font-weight-bold">退会</td>
+      <% else %>
+        <td class="text-success font-weight-bold">有効</td>
+      <% end %>
+  <% end %>

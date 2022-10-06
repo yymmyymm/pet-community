@@ -1,0 +1,20 @@
+  <h4><strong><%= "#{@customer.name}}" %>さんの会員詳細</strong></h4>
+    <th class="table-active">会員ID</th>
+    <td><%= @customer.id %></td>
+    <tr>
+    <th class="table-active">氏名</th>
+    <td><%= "#{@customer.name}" %></td>
+    </tr>
+    <tr>
+    <th class="table-active">メールアドレス</th>
+    <td><%= @customer.email %></td>
+    </tr>
+    <tr>
+    <th class="table-active">会員ステータス</th>
+      <% if @customer.is_deleted == true %>
+        <td class="text-secondary font-weight-bold">退会</td>
+      <% else %>
+        <td class="text-success font-weight-bold">有効</td>
+      <% end %>
+    </tr>
+    <%= link_to "編集する", edit_admin_customer_path(@customer.id), class: 'btn btn-success m-3' %>
