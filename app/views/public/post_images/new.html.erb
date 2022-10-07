@@ -20,5 +20,9 @@
       <%= f.text_field:category, placeholder:"カテゴリー" %>
     <h4>タグ</h4><p>,で区切ると複数タグ登録できます</p>
       <%= f.text_field :name,value: @tag_list %>
+    <tr>
+        <th>ジャンル</th>
+        <th><%= f.collection_select :genre_id, Genre.all, :id, :name, :prompt => "--選択してください--" %></th>
+      </tr>
     <%= f.submit '投稿' %>
   <% end %>

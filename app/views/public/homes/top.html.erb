@@ -1,5 +1,53 @@
-<h1>トップページ</h1>
+  <%= link_to "「ウチの子いちばん！」とは？", about_path, class: 'nav-link text-dark' %>
 
-<li class="nav-item">
-  <%= link_to "アバウトページ", about_path, class: 'nav-link text-light' %>
-</li>
+  <div class="top-image">
+  <h4 class="text-center">ウチの子ベストショット！</h4>
+    <div class="row justify-content-center align-items-center m-3">
+      <% @post_image_rand.each do |post_image| %>
+      <div class="img-thumbnail shadow m-1">
+      <div class="mx-auto">
+        <%= link_to post_image_path(post_image), class: "text-dark nav-link" do %>
+        <%= image_tag post_image.image, :size => '250' %><br>
+        <%= post_image.customer.pen_name %> さんちの<br>
+        <%= post_image.customer.pet_name %> ちゃん<br>
+        <%= post_image.title %><br>
+        <%= post_image.caption %><br>
+        <%= post_image.created_at.strftime('%Y/%m/%d') %><br>
+        <% end %>
+      </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+
+    <h4 class="mx-4 mb-4">新着の投稿</h4>
+    <div class="row justify-content align-items-center m-1">
+      <% @post_images.last(4).reverse.each do |post_image|%>
+      <div class="mx-auto img-thumbnail shadow m-1">
+      <div class="col-md-5 offset-m-1">
+        <%= link_to post_image_path(post_image), class:"text-dark link" do %>
+          <%= image_tag post_image.image, :size => '200' %><br>
+          <%= post_image.title %><br>
+          <%= post_image.caption %><br>
+          <%= post_image.created_at.strftime('%Y/%m/%d') %><br>
+        <% end %>
+        </div>
+        </div>
+      <% end %>
+    </div>
+  <div class="row">
+    <div class="m-auto mt-1 mr-5">
+      <%= link_to "新着投稿をもっと見る>", post_images_path, class:"nav-link text-dark" %>
+    </div>
+  </div>
+
+  <h4 class="mx-4 mb-4">ジャンル検索</h4>
+  <div class="row justify-content align-items-center m-3">
+    <% @genres.each do |genre| %>
+<div class="mt-1 mr-2 text-dark">
+        <%= link_to genre.name, genre_path(genre.id), class:"btn btn-info text-white"%>
+</div>
+
+    <% end %>
+</div>
+

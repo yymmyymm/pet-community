@@ -6,7 +6,7 @@
 		  	<% @genre_post_images.each do |post_image| %>
 			  	<%= link_to post_image_path(post_image.id), class: "col-3 text-center text-dark text-nowrap mt-5" do %>
 						<%= image_tag post_image.image, :size => '200x150' %><br>
-						<%= post_image.name %><br>
+						<%= post_image.title %><br>
 					<% end %>
 			<% end %>
 			</div>

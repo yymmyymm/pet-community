@@ -3,6 +3,7 @@ class Public::PostImagesController < ApplicationController
 
   def new
     @post_image = PostImage.new
+    @genres = Genre.all
     @tag = Tag.new
   end
 
@@ -21,12 +22,15 @@ class Public::PostImagesController < ApplicationController
   def index
     @post_images = PostImage.page(params[:page])
     @tag_list=Tag.all
+    @genre = Genre.find_by(params[:id])
+    @genres = Genre.all
   end
 
   def show
     @post_image = PostImage.find(params[:id])
     @post_comment = PostComment.new
     @post_tags = @post_image.tags
+    @genres = Genre.all
   end
 
   def edit
@@ -69,6 +73,6 @@ class Public::PostImagesController < ApplicationController
   private
 
   def post_image_params
-    params.require(:post_image).permit(:title, :caption, :image, :category)
+    params.require(:post_image).permit(:title, :caption, :image, :category, :genre_id)
   end
 end

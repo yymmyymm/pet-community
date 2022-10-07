@@ -7,13 +7,14 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "application"%>
   </head>
 
-  <body class="d-flex flex-column vh-100">
+  <body class="d-flex flex-column vh-100" style="background-color: #fff5ee;">
     <header class="shadow-sm">
-      <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #00bfff;">
+      <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #ffa07a;">
         <div class="container">
-          <a class="navbar-brand p-3" href="/"><%= image_tag('no_image.jpg') %></a>
+          <a class="navbar-brand p-3" href="/"><%= image_tag('logo-white.png') %></a>
             <% if customer_signed_in? %>
               <p class = 'nav-link text-light'>ようこそ、<%= current_customer.pen_name %>さん</p>
             <% end %>
@@ -37,10 +38,14 @@
                 </li>
               <% elsif customer_signed_in? %>
               <li class="text-right">
-                <%= link_to '投稿一覧', post_images_path, class: 'nav-link text-dark' %>
+                <%= link_to post_images_path, class: 'nav-link text-dark' do %>
+                  投稿一覧 <i class="fas fa-books"></i>
+                <% end %>
               </li>
               <li class="text-right">
-                <%= link_to 'ペット一覧', customers_path, class: 'nav-link text-dark' %>
+                <%= link_to customers_path, class: 'nav-link text-dark' do %>
+                <i class="fas fa-dog"></i>  ペット一覧  <i class="fas fa-cat"></i>
+                <% end %>
               </li>
               <li class="text-right">
                 <%= link_to '投稿フォーム', new_post_image_path, class: 'nav-link text-dark' %>
@@ -72,7 +77,7 @@
         <div class="row　no-gutters">
           <div class="col-md-4">
             <p>ウチのさいかわペットを自慢できるSNS</p>
-            <%= image_tag('no_image.jpg') %>
+            <%= image_tag('logo-white.png') %>
           </div>
 
         </div>
