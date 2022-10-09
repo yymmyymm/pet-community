@@ -1,8 +1,8 @@
 <h1>マイページ</h1>
 <!-- ユーザーの詳細 -->
 <div>
-  <h3><%= @customer.name %></h3>
-  <%= image_tag @customer.get_profile_image(100,100) %>
+  <h3><%= @customer.name %> さん</h3>
+  <%= image_tag @customer.get_profile_image(100,100),class:"rounded-circle" %>
   <% if @customer.id == current_customer.id %>
     <p><%= link_to "プロフィール編集",edit_customer_path(current_customer.id) %></p>
   <% end %>

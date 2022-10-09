@@ -31,6 +31,10 @@ class Public::PostImagesController < ApplicationController
     @post_comment = PostComment.new
     @post_tags = @post_image.tags
     @genres = Genre.all
+    @post_detail = PostImage.find(params[:id])
+    unless ViewCount.find_by(customer_id: current_customer.id, post_image_id: @post_detail.id)
+      current_customer.view_counts.create(post_image_id: @post_detail.id)
+    end
   end
 
   def edit

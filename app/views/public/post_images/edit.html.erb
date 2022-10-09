@@ -1,5 +1,6 @@
  <%= form_with model: @post_image do |f| %>
   <h4>タグ編集</h4><p>,で区切ると複数タグ登録できます</p>
       <%= f.text_field :name,value: @tag_list %>
-    <%= f.submit '投稿' %>
+    <%= f.submit '変更' %>
+
   <% end %>

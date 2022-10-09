@@ -1,18 +1,22 @@
-  <%= link_to "「ウチの子いちばん！」とは？", about_path, class: 'nav-link text-dark' %>
-
-  <div class="top-image">
+ <div class="top-image">
+  <%= link_to "「ウチの子いちばん！」とは？", about_path, class: 'link text-dark' %>
   <h4 class="text-center">ウチの子ベストショット！</h4>
     <div class="row justify-content-center align-items-center m-3">
       <% @post_image_rand.each do |post_image| %>
       <div class="img-thumbnail shadow m-1">
       <div class="mx-auto">
         <%= link_to post_image_path(post_image), class: "text-dark nav-link" do %>
-        <%= image_tag post_image.image, :size => '250' %><br>
-        <%= post_image.customer.pen_name %> さんちの<br>
-        <%= post_image.customer.pet_name %> ちゃん<br>
+        <%= image_tag post_image.image, :size => '250', class: "border" %><br>
         <%= post_image.title %><br>
         <%= post_image.caption %><br>
-        <%= post_image.created_at.strftime('%Y/%m/%d') %><br>
+        <div class="text-center">
+        ---------------------------------------
+        </div>
+        <%= post_image.customer.pen_name %> さんちの<br>
+        <%= image_tag post_image.customer.get_profile_image(30,30),class:"rounded-circle" %>
+        <%= post_image.customer.pet_name %> ちゃん<br>
+        <%= post_image.created_at.strftime('%Y/%m/%d') %>
+        　<i class="fas fa-comments"></i><%= post_image.post_comments.count %><i class="fas fa-heart"></i><%= post_image.favorites.count %><p class="view-count">👀数: <%= @post_detail.view_counts.count %></p><br>
         <% end %>
       </div>
       </div>
@@ -24,9 +28,9 @@
     <div class="row justify-content align-items-center m-1">
       <% @post_images.last(4).reverse.each do |post_image|%>
       <div class="mx-auto img-thumbnail shadow m-1">
-      <div class="col-md-5 offset-m-1">
-        <%= link_to post_image_path(post_image), class:"text-dark link" do %>
-          <%= image_tag post_image.image, :size => '200' %><br>
+      <div class="col-md-6 offset-m-1">
+        <%= link_to post_image_path(post_image), class:"text-dark nav-link" do %>
+          <%= image_tag post_image.image, :size => '200', class: "border"  %><br>
           <%= post_image.title %><br>
           <%= post_image.caption %><br>
           <%= post_image.created_at.strftime('%Y/%m/%d') %><br>
@@ -37,10 +41,12 @@
     </div>
   <div class="row">
     <div class="m-auto mt-1 mr-5">
+      <% if customer_signed_in? %>
       <%= link_to "新着投稿をもっと見る>", post_images_path, class:"nav-link text-dark" %>
+      <% end %>
     </div>
   </div>
-
+  <% if customer_signed_in? %>
   <h4 class="mx-4 mb-4">ジャンル検索</h4>
   <div class="row justify-content align-items-center m-3">
     <% @genres.each do |genre| %>
@@ -48,6 +54,7 @@
         <%= link_to genre.name, genre_path(genre.id), class:"btn btn-info text-white"%>
 </div>
 
+    <% end %>
     <% end %>
 </div>
 

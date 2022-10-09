@@ -7,6 +7,7 @@ class PostImage < ApplicationRecord
   has_many :post_tags,dependent: :destroy
   has_many :tags,through: :post_tags
   belongs_to :genre
+  has_many :view_counts, dependent: :destroy
 
   validates :title, presence: true
   validates :image, presence: true
