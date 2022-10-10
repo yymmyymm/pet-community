@@ -21,6 +21,17 @@ class Public::CustomersController < ApplicationController
     redirect_to customer_path(current_customer.id)
   end
 
+  def withdrawal
+    @customer = current_customer
+    @customer.update(is_deleted: true)
+  reset_session
+    flash[:notice] = "ありがとうございました。またのご利用をお待ちしております"
+    redirect_to root_path
+  end
+
+  def unsubscribe
+  end
+
   private
 
   def customer_params

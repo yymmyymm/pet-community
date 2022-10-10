@@ -40,8 +40,10 @@ scope module: :public do
   get 'search', to: 'searches#search'
   get "search_post_image" => "post_images#search_post_image"
   get "search_tag"=>"post_images#search_tag"
-
   resources :genres, only: [:show, :index]
+  resources :groups, only: [:new, :index, :show, :create, :edit, :update] do
+    resource :group_menmbers, only: [:create, :destroy]
+  end
 end
 
 

@@ -1,5 +1,5 @@
 class Public::PostImagesController < ApplicationController
-
+  before_action :authenticate_customer!
 
   def new
     @post_image = PostImage.new
@@ -22,19 +22,18 @@ class Public::PostImagesController < ApplicationController
   def index
     @post_images = PostImage.page(params[:page])
     @tag_list=Tag.all
-    @genre = Genre.find_by(params[:id])
     @genres = Genre.all
   end
 
   def show
     @post_image = PostImage.find(params[:id])
+    unless ViewCount.find_by(customer_id: current_customer.id, post_image_id: @post_image.id)
+      current_customer.view_counts.create(post_image_id: @post_image.id)
+    end
     @post_comment = PostComment.new
     @post_tags = @post_image.tags
     @genres = Genre.all
-    @post_detail = PostImage.find(params[:id])
-    unless ViewCount.find_by(customer_id: current_customer.id, post_image_id: @post_detail.id)
-      current_customer.view_counts.create(post_image_id: @post_detail.id)
-    end
+
   end
 
   def edit

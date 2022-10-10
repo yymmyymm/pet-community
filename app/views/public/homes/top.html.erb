@@ -2,7 +2,7 @@
   <%= link_to "「ウチの子いちばん！」とは？", about_path, class: 'link text-dark' %>
   <h4 class="text-center">ウチの子ベストショット！</h4>
     <div class="row justify-content-center align-items-center m-3">
-      <% @post_image_rand.each do |post_image| %>
+      <% @post_image.each do |post_image| %>
       <div class="img-thumbnail shadow m-1">
       <div class="mx-auto">
         <%= link_to post_image_path(post_image), class: "text-dark nav-link" do %>
@@ -16,7 +16,7 @@
         <%= image_tag post_image.customer.get_profile_image(30,30),class:"rounded-circle" %>
         <%= post_image.customer.pet_name %> ちゃん<br>
         <%= post_image.created_at.strftime('%Y/%m/%d') %>
-        　<i class="fas fa-comments"></i><%= post_image.post_comments.count %><i class="fas fa-heart"></i><%= post_image.favorites.count %><p class="view-count">👀数: <%= @post_detail.view_counts.count %></p><br>
+        　<i class="fas fa-comments"></i><%= post_image.post_comments.count %><i class="fas fa-heart"></i><%= post_image.favorites.count %><i class="fas fa-eye"></i><%= post_image.view_counts.count %><br>
         <% end %>
       </div>
       </div>
@@ -28,7 +28,7 @@
     <div class="row justify-content align-items-center m-1">
       <% @post_images.last(4).reverse.each do |post_image|%>
       <div class="mx-auto img-thumbnail shadow m-1">
-      <div class="col-md-6 offset-m-1">
+      <div class="col-md-10 offset-m-1">
         <%= link_to post_image_path(post_image), class:"text-dark nav-link" do %>
           <%= image_tag post_image.image, :size => '200', class: "border"  %><br>
           <%= post_image.title %><br>
@@ -46,15 +46,27 @@
       <% end %>
     </div>
   </div>
-  <% if customer_signed_in? %>
-  <h4 class="mx-4 mb-4">ジャンル検索</h4>
-  <div class="row justify-content align-items-center m-3">
-    <% @genres.each do |genre| %>
-<div class="mt-1 mr-2 text-dark">
-        <%= link_to genre.name, genre_path(genre.id), class:"btn btn-info text-white"%>
-</div>
 
+  <% if customer_signed_in? %>
+  <h5 class="mx-3">ジャンル検索</h4>
+  <div class="row justify-content align-items-center mx-5">
+    <% @genres.each do |genre| %>
+  <div class="mt-1 mr-2 text-dark">
+    <%= link_to genre.name, genre_path(genre.id), class:"btn btn-info text-white"%>
+  </div>
     <% end %>
+  </div>
+
+  <h5 class="mx-3">タグ検索</h4>
+  <div class="row justify-content align-items-center mx-5 mb-3">
+    <% @tag_list.each do |list|%>
+      <% unless list.post_images.count == 0 %>
+      <div class="mr-2 text-dark">
+        <%=link_to list.name,search_tag_path(tag_id: list.id), class:"ec-genre-list-item text-dark" %>
+        <%="(#{list.post_images.count})" %>
+      </div>
+      <% end %>
     <% end %>
-</div>
+  </div>
+<% end %>
 

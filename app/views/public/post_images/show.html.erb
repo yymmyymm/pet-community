@@ -6,12 +6,12 @@
   <% end %>
   <% if @post_image.customer == current_customer %>
     <%= link_to "タグ編集", edit_post_image_path(@post_image.id) %>
-    
+
   <% end %>
 
 
 <div>
-  <%= image_tag @post_image.get_image %>
+  <%= image_tag @post_image.get_image, :size => '200x200'  %>
   <p>タイトル：<%= @post_image.title %></p>
   <p>説明：<%= @post_image.caption %></p>
   <p>投稿ユーザーペット画像：<%= image_tag @post_image.customer.get_profile_image(100,100)%></p>
@@ -23,6 +23,7 @@
 <%= render "public/favorites/btn", post_image: @post_image %>
 </div>
 <div>
+  <td class="view-count">閲覧数: <%= @post_image.view_counts.count %></td>
   <p>コメント件数：<%= @post_image.post_comments.count %></p>
   <% @post_image.post_comments.each do |post_comment| %>
     <p><%= image_tag post_comment.customer.get_profile_image(100,100) %></p>

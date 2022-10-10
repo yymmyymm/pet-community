@@ -1,16 +1,16 @@
 <h3>投稿一覧</h3>
-<% @genres.each do |genre| %>
-    <tr>
-      <td>
-        <%= link_to genre.name, genre_path(genre.id), class:"btn btn-info ec-genre-list-item text-white"%>
-      </td>
-    </tr>
+<tr>
+  <td>
+    <% @genres.each do |genre| %>
+      <%= link_to genre.name, genre_path(genre.id), class:"btn btn-info ec-genre-list-item text-white"%>
     <% end %>
+  </td>
+</tr>
 
 <% @post_images.each do |post_image| %>
 <div>
   <%= link_to post_image_path(post_image.id) do %>
-    <%= image_tag post_image.get_image, :size => '150x150' %>
+    <%= image_tag post_image.get_image, :size => '200x200' %>
   <% end %>
   <p>投稿ユーザー画像：<%= image_tag post_image.customer.get_profile_image(100,100) %></p>
   <p>タイトル：<%= post_image.title %></p>
@@ -20,19 +20,21 @@
   <p>コメント：<%= link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id) %></p>
   <p>メインカテゴリー：<%= link_to post_image.category, search_post_image_path(keyword: post_image.category) %></p>
 　<p>タグ一覧：<%= post_image.tags.map(&:name).join(', ') %></p>
-　<p>ジャンル：<%= @genre.name %></p>
+　<p>ジャンル：<%= post_image.genre.name %></p>
 
 </div>
 <% end %>
 <%= paginate @post_images %>
 
-<tr>
+  <tr>
     <td>
-  <% @tag_list.each do |list|%>
-  <div class="btn">
-    <%=link_to list.name,search_tag_path(tag_id: list.id) %>
-    <%="(#{list.post_images.count})" %>
-  </div>
-  <% end %>
+    <% @tag_list.each do |list|%>
+      <% unless list.post_images.count == 0 %>
+      <div class="btn btn-outline-secondary">
+        <%=link_to list.name,search_tag_path(tag_id: list.id), class:"ec-genre-list-item text-dark" %>
+        <%="(#{list.post_images.count})" %>
+      </div>
+      <% end %>
+    <% end %>
     </td>
   </tr>
