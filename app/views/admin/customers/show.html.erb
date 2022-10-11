@@ -1,20 +1,49 @@
-  <h4><strong><%= "#{@customer.name}}" %>さんの会員詳細</strong></h4>
-    <th class="table-active">会員ID</th>
-    <td><%= @customer.id %></td>
-    <tr>
-    <th class="table-active">氏名</th>
-    <td><%= "#{@customer.name}" %></td>
-    </tr>
-    <tr>
-    <th class="table-active">メールアドレス</th>
-    <td><%= @customer.email %></td>
-    </tr>
-    <tr>
-    <th class="table-active">会員ステータス</th>
-      <% if @customer.is_deleted == true %>
-        <td class="text-secondary font-weight-bold">退会</td>
-      <% else %>
-        <td class="text-success font-weight-bold">有効</td>
-      <% end %>
-    </tr>
-    <%= link_to "編集する", edit_admin_customer_path(@customer.id), class: 'btn btn-success m-3' %>
+<div class="container">
+  <div class="row">
+    <div class="col3-md offset-1 mt-2 mb-1">
+      <h4><%= "#{@customer.name}" %>さんの会員詳細</h4>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <table class="table shadow-lg">
+        <tr>
+          <th class="table-active">会員ID</th>
+          <td><%= @customer.id %></td>
+        </tr>
+        <tr>
+          <th class="table-active">氏名</th>
+          <td><%= "#{@customer.name}" %></td>
+        </tr>
+        <tr>
+          <th class="table-active">メールアドレス</th>
+          <td><%= @customer.email %></td>
+        </tr>
+        <tr>
+          <th class="table-active">会員ステータス</th>
+            <% if @customer.is_deleted == true %>
+          <td class="text-secondary font-weight-bold">退会</td>
+            <% else %>
+          <td class="text-success font-weight-bold">有効</td>
+            <% end %>
+          </tr>
+          <%= link_to "編集する", edit_admin_customer_path(@customer.id), class: 'btn btn-success m-3' %>
+      </table>
+    </div>
+  </div>
+  </div>
+<% @post_images.each do |post_image| %>
+<div>
+  <%= link_to admin_post_image_path(post_image.id) do %>
+    <%= image_tag post_image.get_image, :size => '200' %>
+
+  <p>タイトル：<%= post_image.title %></p>
+  <p>説明：<%= post_image.caption %></p>
+  <p>ユーザーネーム：<%= post_image.customer.pen_name %></p>
+  <p>コメント件数：<%= post_image.post_comments.count %></p>
+<% end %>
+</div>
+<% end %>
+
+<%= paginate @post_images %>

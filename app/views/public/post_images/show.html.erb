@@ -6,9 +6,7 @@
   <% end %>
   <% if @post_image.customer == current_customer %>
     <%= link_to "タグ編集", edit_post_image_path(@post_image.id) %>
-
   <% end %>
-
 
 <div>
   <%= image_tag @post_image.get_image, :size => '200x200'  %>
@@ -25,6 +23,7 @@
 <div>
   <td class="view-count">閲覧数: <%= @post_image.view_counts.count %></td>
   <p>コメント件数：<%= @post_image.post_comments.count %></p>
+
   <% @post_image.post_comments.each do |post_comment| %>
     <p><%= image_tag post_comment.customer.get_profile_image(100,100) %></p>
     <%= post_comment.customer.name %>
@@ -33,6 +32,7 @@
       <%= link_to "削除", post_image_post_comment_path(post_comment.post_image, post_comment), method: :delete %>
     <% end %>
   <% end %>
+
 </div>
 <div>
   <%= form_with model: [@post_image, @post_comment] do |f| %>

@@ -5,7 +5,11 @@ class Admin::CustomersController < ApplicationController
   end
 
   def show
+    @post_comment = PostComment.new
     @customer = Customer.find(params[:id])
+    @post_images = @customer.post_images.page(params[:page])
+    @post_image = PostImage.find_by(params[:id])
+    @post_comments = PostComment.all
   end
 
   def edit

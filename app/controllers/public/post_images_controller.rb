@@ -33,7 +33,7 @@ class Public::PostImagesController < ApplicationController
     @post_comment = PostComment.new
     @post_tags = @post_image.tags
     @genres = Genre.all
-
+    
   end
 
   def edit

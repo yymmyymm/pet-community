@@ -15,9 +15,11 @@
       <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #ffa07a;">
         <div class="container">
           <a class="navbar-brand p-3" href="/"><%= image_tag('logo-white.png') %></a>
+          
             <% if customer_signed_in? %>
               <p class = 'nav-link text-light'>ようこそ、<%= current_customer.pen_name %>さん</p>
             <% end %>
+            
             <%= render 'public/searches/form' %>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
