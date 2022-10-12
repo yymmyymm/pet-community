@@ -10,22 +10,17 @@
     <%= stylesheet_link_tag "application"%>
   </head>
 
-  <body class="d-flex flex-column vh-100" style="background-color: #fff5ee;">
-    <header class="shadow-sm">
+  <body>
+    <header class="sticky-top border-bottom border-secondary border-3 mb-1 border border-warning">
+
       <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #ffa07a;">
         <div class="container">
-          <a class="navbar-brand p-3" href="/"><%= image_tag('logo-white.png') %></a>
-          
-            <% if customer_signed_in? %>
-              <p class = 'nav-link text-light'>ようこそ、<%= current_customer.pen_name %>さん</p>
-            <% end %>
-            
-            <%= render 'public/searches/form' %>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <a class="navbar-brand" href="/"><%= image_tag('logo-white.png') %></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        </button>
+       <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
 
             <ul class="navbar-nav ml-auto">
               <% if admin_signed_in? %>
@@ -39,6 +34,7 @@
                   <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
                 </li>
               <% elsif customer_signed_in? %>
+
               <li class="text-right">
                 <%= link_to post_images_path, class: 'nav-link text-dark' do %>
                   投稿一覧 <i class="fas fa-book"></i>
@@ -46,22 +42,22 @@
               </li>
               <li class="text-right">
                 <%= link_to customers_path, class: 'nav-link text-dark' do %>
-                <i class="fas fa-dog"></i>  ペット一覧  <i class="fas fa-cat"></i>
+                <i class="fas fa-dog"></i>  会員＆ペット一覧  <i class="fas fa-cat"></i>
                 <% end %>
               </li>
               <li class="text-right">
                 <%= link_to new_post_image_path, class: 'nav-link text-dark' do %>
-                投稿フォーム<i class="fas fa-pen"></i>
+                投稿フォーム <i class="fas fa-pen"></i>
                 <% end %>
               </li>
               <li class="text-right">
-                <%= link_to customer_path(current_customer.id), class: 'nav-link text-dark' do %>
-                マイページ<i class="fas fa-comment-smile"></i>
+                <%= link_to new_contact_path(current_customer.id), class: 'nav-link text-dark' do %>
+                お問い合わせ <i class="fas fa-envelope"></i>
                 <% end %>
               </li>
               <li class="text-right">
                 <%= link_to destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' do %>
-                ログアウト<i class="fas fa-hand"></i>
+                ログアウト <i class="fas fa-arrow-right"></i>
                 <% end %>
               </li>
               <% else %>
@@ -76,8 +72,25 @@
           </div>
         </div>
       </nav>
+        <div class="seach">
+          <div class="nav-item">
+          <% if customer_signed_in? %>
+          ようこそ、<span>
+            <%= link_to customer_path(current_customer.id), class: 'btn btn-outline-danger btn-sm' do %>
+                <%= current_customer.pen_name %><i class="fas fa-paw"></i>
+            <% end %>
+
+          </span>さん
+          <% end %>
+
+          </div>
+        <%= render 'public/searches/form' %>
+        </div>
     </header>
-    <main class="mb-auto">
+    <div class="notice">
+      <%= flash[:notice] %>
+    </div>
+    <main>
     <%= yield %>
     </main>
     <footer class="bg-dark text-white pt-5 pb-4">

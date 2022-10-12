@@ -1,11 +1,4 @@
 <h3>投稿一覧</h3>
-<tr>
-  <td>
-    <% @genres.each do |genre| %>
-      <%= link_to genre.name, genre_path(genre.id), class:"btn btn-info ec-genre-list-item text-white"%>
-    <% end %>
-  </td>
-</tr>
 
 <% @post_images.each do |post_image| %>
 <div>
@@ -25,15 +18,25 @@
 <% end %>
 <%= paginate @post_images %>
 
-  <tr>
-    <td>
+  <% if customer_signed_in? %>
+  <h5 class="mx-3">ジャンル検索</h5>
+  <div class="row justify-content align-items-center mx-5">
+    <% @genres.each do |genre| %>
+  <div class="mt-1 mr-2 text-dark">
+    <%= link_to genre.name, genre_path(genre.id), class:"btn btn-info text-white"%>
+  </div>
+    <% end %>
+  </div>
+
+  <h5 class="mx-3">タグ検索<font size="3">(あいうえお順)</font></h4>
+  <div class="row justify-content align-items-center mx-5 mb-3 ">
     <% @tag_list.each do |list|%>
       <% unless list.post_images.count == 0 %>
-      <div class="btn btn-outline-secondary">
+      <div class="mr-2 text-dark btn btn-outline-secondary">
         <%=link_to list.name,search_tag_path(tag_id: list.id), class:"ec-genre-list-item text-dark" %>
         <%="(#{list.post_images.count})" %>
       </div>
       <% end %>
     <% end %>
-    </td>
-  </tr>
+  </div>
+<% end %>

@@ -48,6 +48,7 @@ scope module: :public do
   resources :groups, only: [:new, :index, :show, :create, :edit, :update] do
     resource :group_menmbers, only: [:create, :destroy]
   end
+  resources :contacts, only: [:new, :create]
 end
 
 

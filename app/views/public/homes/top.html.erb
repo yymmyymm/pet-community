@@ -1,22 +1,27 @@
  <div class="top-image">
-  <%= link_to "「ウチの子いちばん！」とは？", about_path, class: 'link text-dark' %>
+  <div class="about">
+    <%= link_to "「ウチの子いちばん！」とは？", about_path, class: 'link text-dark' %>
+  </div>
   <h4 class="text-center">ウチの子ベストショット！</h4>
-    <div class="row justify-content-center align-items-center m-3">
+    <div class="row justify-content-center align-items-center m-3 ">
       <% @post_image.each do |post_image| %>
-      <div class="img-thumbnail shadow m-1">
-      <div class="mx-auto">
+      <div class="img-thumbnail shadow m-1"style="background-color: #fffafa;">
+      <div class="mx-3">
         <%= link_to post_image_path(post_image), class: "text-dark nav-link" do %>
         <%= image_tag post_image.image, :size => '250', class: "border" %><br>
-        <%= post_image.title %><br>
-        <%= post_image.caption %><br>
-        <div class="text-center">
-        ---------------------------------------
+        <div class="post_title">
+          <%= post_image.title %>
         </div>
+        <%= post_image.caption %><br>
+        <div style="background-color: #ffe4c4">
         <%= post_image.customer.pen_name %> さんちの<br>
         <%= image_tag post_image.customer.get_profile_image(30,30),class:"rounded-circle" %>
-        <%= post_image.customer.pet_name %> ちゃん<br>
+        <span class="pet_title">
+          <%= post_image.customer.pet_name %>
+        </span> ちゃん<br>
         <%= post_image.created_at.strftime('%Y/%m/%d') %>
         　<i class="fas fa-comments"></i><%= post_image.post_comments.count %><i class="fas fa-heart"></i><%= post_image.favorites.count %><i class="fas fa-eye"></i><%= post_image.view_counts.count %><br>
+        </div>
         <% end %>
       </div>
       </div>
@@ -25,20 +30,31 @@
   </div>
 
     <h4 class="mx-4 mb-4">新着の投稿</h4>
-    <div class="row justify-content align-items-center m-1">
+    <div class="row justify-content-center align-items-center ">
       <% @post_images.last(4).reverse.each do |post_image|%>
-      <div class="mx-auto img-thumbnail shadow m-1">
-      <div class="col-md-10 offset-m-1">
-        <%= link_to post_image_path(post_image), class:"text-dark nav-link" do %>
-          <%= image_tag post_image.image, :size => '200', class: "border"  %><br>
-          <%= post_image.title %><br>
-          <%= post_image.caption %><br>
-          <%= post_image.created_at.strftime('%Y/%m/%d') %><br>
+      <div class="img-thumbnail shadow m-1 mr-3 ml-3"style="background-color: #fffafa;">
+      <div class="mx-1">
+        <%= link_to post_image_path(post_image), class: "text-dark nav-link" do %>
+        <%= image_tag post_image.image, :size => '250', class: "border" %><br>
+        <div class="post_title">
+          <%= post_image.title %>
+        </div>
+        <%= post_image.caption %><br>
+        <div style="background-color: #ffe4c4">
+        <%= post_image.customer.pen_name %> さんちの<br>
+        <%= image_tag post_image.customer.get_profile_image(30,30),class:"rounded-circle" %>
+        <span class="pet_title">
+          <%= post_image.customer.pet_name %>
+        </span> ちゃん<br>
+        <%= post_image.created_at.strftime('%Y/%m/%d') %>
+        　<i class="fas fa-comments"></i><%= post_image.post_comments.count %><i class="fas fa-heart"></i><%= post_image.favorites.count %><i class="fas fa-eye"></i><%= post_image.view_counts.count %><br>
+        </div>
         <% end %>
         </div>
         </div>
       <% end %>
     </div>
+
   <div class="row">
     <div class="m-auto mt-1 mr-5">
       <% if customer_signed_in? %>
@@ -48,7 +64,7 @@
   </div>
 
   <% if customer_signed_in? %>
-  <h5 class="mx-3">ジャンル検索</h4>
+  <h5 class="mx-3">ジャンル検索</h5>
   <div class="row justify-content align-items-center mx-5">
     <% @genres.each do |genre| %>
   <div class="mt-1 mr-2 text-dark">
@@ -58,10 +74,10 @@
   </div>
 
   <h5 class="mx-3">タグ検索</h4>
-  <div class="row justify-content align-items-center mx-5 mb-3">
+  <div class="row justify-content align-items-center mx-5 mb-3 ">
     <% @tag_list.each do |list|%>
       <% unless list.post_images.count == 0 %>
-      <div class="mr-2 text-dark">
+      <div class="mr-2 text-dark btn btn-outline-secondary">
         <%=link_to list.name,search_tag_path(tag_id: list.id), class:"ec-genre-list-item text-dark" %>
         <%="(#{list.post_images.count})" %>
       </div>
