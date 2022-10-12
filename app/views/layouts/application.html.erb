@@ -37,35 +37,39 @@
 
               <li class="text-right">
                 <%= link_to post_images_path, class: 'nav-link text-dark' do %>
-                  投稿一覧 <i class="fas fa-book"></i>
+                  投稿一覧&nbsp;<i class="fas fa-book"></i>
                 <% end %>
               </li>
               <li class="text-right">
                 <%= link_to customers_path, class: 'nav-link text-dark' do %>
-                <i class="fas fa-dog"></i>  会員＆ペット一覧  <i class="fas fa-cat"></i>
+                <i class="fas fa-dog"></i>&nbsp;会員＆ペット一覧&nbsp;<i class="fas fa-cat"></i>
                 <% end %>
               </li>
               <li class="text-right">
                 <%= link_to new_post_image_path, class: 'nav-link text-dark' do %>
-                投稿フォーム <i class="fas fa-pen"></i>
+                投稿フォーム&nbsp;<i class="fas fa-pen"></i>
                 <% end %>
               </li>
               <li class="text-right">
                 <%= link_to new_contact_path(current_customer.id), class: 'nav-link text-dark' do %>
-                お問い合わせ <i class="fas fa-envelope"></i>
+                お問い合わせ&nbsp;<i class="fas fa-envelope"></i>
                 <% end %>
               </li>
               <li class="text-right">
                 <%= link_to destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' do %>
-                ログアウト <i class="fas fa-arrow-right"></i>
+                ログアウト&nbsp;<i class="fas fa-arrow-right"></i>
                 <% end %>
               </li>
               <% else %>
               <li class="text-right">
-                <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link text-dark' %>
+                <%= link_to new_customer_registration_path, class: 'nav-link text-dark' do %>
+                新規登録
+                <% end %>
               </li>
               <li class="text-right">
-                <%= link_to "ログイン", new_customer_session_path, class: 'nav-link text-dark' %>
+                <%= link_to new_customer_session_path, class: 'nav-link text-dark' do %>
+                ログイン
+                <% end %>
               </li>
               <% end %>
             </ul>
@@ -79,10 +83,8 @@
             <%= link_to customer_path(current_customer.id), class: 'btn btn-outline-danger btn-sm' do %>
                 <%= current_customer.pen_name %><i class="fas fa-paw"></i>
             <% end %>
-
           </span>さん
           <% end %>
-
           </div>
         <%= render 'public/searches/form' %>
         </div>

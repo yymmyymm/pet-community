@@ -15,7 +15,7 @@
  */
 .top-image{
  background-image: image-url('pr51.jpg');
- height: 550x;
+ height: 520px;
  background-size: contain;
 }
 
@@ -33,4 +33,8 @@
 .pet_title{
   color: #b22222;
   font-weight: bolder
+}
+
+.view{
+display: flex;
 }

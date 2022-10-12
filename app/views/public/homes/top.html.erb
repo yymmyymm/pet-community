@@ -5,22 +5,29 @@
   <h4 class="text-center">ウチの子ベストショット！</h4>
     <div class="row justify-content-center align-items-center m-3 ">
       <% @post_image.each do |post_image| %>
-      <div class="img-thumbnail shadow m-1"style="background-color: #fffafa;">
+      <div class="photo img-thumbnail shadow m-1"style="background-color: #fffafa;">
       <div class="mx-3">
         <%= link_to post_image_path(post_image), class: "text-dark nav-link" do %>
         <%= image_tag post_image.image, :size => '250', class: "border" %><br>
         <div class="post_title">
-          <%= post_image.title %>
+          <%= post_image.title.truncate(12) %>
         </div>
-        <%= post_image.caption %><br>
+          <%= post_image.caption.truncate(15) %>
         <div style="background-color: #ffe4c4">
-        <%= post_image.customer.pen_name %> さんちの<br>
-        <%= image_tag post_image.customer.get_profile_image(30,30),class:"rounded-circle" %>
+          <%= post_image.customer.pen_name %> さんちの<br>
+          <%= image_tag post_image.customer.get_profile_image(30,30),class:"rounded-circle" %>
         <span class="pet_title">
           <%= post_image.customer.pet_name %>
         </span> ちゃん<br>
-        <%= post_image.created_at.strftime('%Y/%m/%d') %>
-        　<i class="fas fa-comments"></i><%= post_image.post_comments.count %><i class="fas fa-heart"></i><%= post_image.favorites.count %><i class="fas fa-eye"></i><%= post_image.view_counts.count %><br>
+        <div class="view">
+          <%= post_image.created_at.strftime('%Y/%m/%d') %>&nbsp;
+          <i class="fas fa-eye"></i><%= post_image.view_counts.count %>&nbsp;
+          <i class="fas fa-handshake"></i><%= post_image.customer.followers.count %>&nbsp;
+          <i class="fas fa-comments"></i><%= post_image.post_comments.count %>&nbsp;
+          <% if customer_signed_in? %>
+          <%= render "public/favorites/btn", post_image: post_image %>
+          <% end %>
+        </div>
         </div>
         <% end %>
       </div>
@@ -37,17 +44,24 @@
         <%= link_to post_image_path(post_image), class: "text-dark nav-link" do %>
         <%= image_tag post_image.image, :size => '250', class: "border" %><br>
         <div class="post_title">
-          <%= post_image.title %>
+          <%= post_image.title.truncate(10) %>
         </div>
-        <%= post_image.caption %><br>
+          <%= post_image.caption.truncate(12) %>
         <div style="background-color: #ffe4c4">
         <%= post_image.customer.pen_name %> さんちの<br>
         <%= image_tag post_image.customer.get_profile_image(30,30),class:"rounded-circle" %>
         <span class="pet_title">
           <%= post_image.customer.pet_name %>
         </span> ちゃん<br>
-        <%= post_image.created_at.strftime('%Y/%m/%d') %>
-        　<i class="fas fa-comments"></i><%= post_image.post_comments.count %><i class="fas fa-heart"></i><%= post_image.favorites.count %><i class="fas fa-eye"></i><%= post_image.view_counts.count %><br>
+        <div class="view">
+          <%= post_image.created_at.strftime('%Y/%m/%d') %>&nbsp;
+          <i class="fas fa-eye"></i><%= post_image.view_counts.count %>&nbsp;
+          <i class="fas fa-handshake"></i><%= post_image.customer.followers.count %>&nbsp;
+          <i class="fas fa-comments"></i><%= post_image.post_comments.count %>&nbsp;
+          <% if customer_signed_in? %>
+          <%= render "public/favorites/btn", post_image: post_image %>
+          <% end %>
+        </div>
         </div>
         <% end %>
         </div>
