@@ -32,6 +32,13 @@ class Public::CustomersController < ApplicationController
   def unsubscribe
   end
 
+  def favorites
+    @customer = Customer.find(params[:id])
+    favorites= Favorite.where(customer_id: @customer.id).pluck(:post_image_id)
+    @favorites = PostImage.find(favorites)
+    @post_images = @customer.post_images.page(params[:page])
+  end
+
   private
 
   def customer_params

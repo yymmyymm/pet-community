@@ -7,5 +7,9 @@
     <p><%= link_to "プロフィール編集",edit_customer_path(current_customer.id) %></p>
   <% end %>
 </div>
+<td>フォロワー一覧<%= link_to @customer.followers.count, customer_followers_path(@customer) %></td>
+
+<td>(フォローボタン)<%= render "public/relationships/btn", customer: @customer %></td>
+<p><%=link_to"いいね（お気に入り）一覧",favorites_customer_path(@customer) %></p>
 
 <%= render 'public/post_images/list', post_images: @post_images %>

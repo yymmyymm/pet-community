@@ -33,7 +33,7 @@ class Public::PostImagesController < ApplicationController
     @post_comment = PostComment.new
     @post_tags = @post_image.tags
     @genres = Genre.all
-    
+
   end
 
   def edit
@@ -71,6 +71,11 @@ class Public::PostImagesController < ApplicationController
     @tag_list=Tag.all
     @tag=Tag.find(params[:tag_id])
     @post_images=@tag.post_images.page(params[:page]).per(10)
+  end
+
+  def search_post
+    selection = params[:keyword]
+    @post_images = PostImage.sort(selection)
   end
 
   private

@@ -53,4 +53,6 @@ class PostImage < ApplicationRecord
    end
   end
 
+
+
 end

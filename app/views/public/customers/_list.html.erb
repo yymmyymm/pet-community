@@ -1,14 +1,26 @@
-<% customers.each do |customer| %>
+    <table class="table shadow">
+        <thead class="table-active">
+          <tr>
+            <th>会員ID</th>
+            <th>ユーザーネーム</th>
+            <th>プロフィール画像</th>
+            <th>ペットネーム</th>
+            <th>フォロワー数</th>
+            <th>お気に入り数</th>
+            <th>詳細ページ</th>
+          </tr>
+        </thead>
+  <% customers.each do |customer| %>
+  <tbody>
     <tr>
-      <td><%= image_tag customer.get_profile_image(100,100),class:"rounded-circle" %></td>
+      <td><%= customer.id %></td>
       <td><%= customer.pen_name %></td>
-      <td>フォロワー数: <%= customer.followers.count %></td>
-      <tr>
-      <th>フォロワー</th>
-      <th><%= link_to customer.followers.count, customer_followers_path(customer) %></th>
-      </tr>
-      <%= render "public/favorites/btn", post_image: @post_image %>
-      <td><%= render "public/relationships/btn", customer: customer %></td>
+      <td><%= image_tag customer.get_profile_image(100,100)%></td>
+      <td><%= customer.pet_name %></td>
+      <td><%= customer.followers.count %></td>
+      <td><%= customer.favorites.count %></td>
       <td><%= link_to "show", customer, class: "customer_#{customer.id}" %></td>
     </tr>
+  </tbody>
   <% end %>
+   </table>

@@ -37,10 +37,14 @@ scope module: :public do
         get 'unsubscribe'
         patch 'withdrawal'
       end
+      member do
+        get "favorites"
+      end
     resource :relationships, only: [:create, :destroy]
       get "followings" => "relationships#followings", as: "followings"
       get "followers" => "relationships#followers", as: "followers"
   end
+
   get 'search', to: 'searches#search'
   get "search_post_image" => "post_images#search_post_image"
   get "search_tag"=>"post_images#search_tag"
