@@ -7,22 +7,22 @@ class Public::PostImagesController < ApplicationController
     @tag = Tag.new
   end
 
+  def index
+    @post_images = PostImage.page(params[:page]).order(created_at: :desc)
+    @tag_list=Tag.all
+    @genres = Genre.all
+  end
+
   def create
     @post_image = PostImage.new(post_image_params)
     @post_image.customer_id = current_customer.id
-    tag_list=params[:post_image][:name].split(',')
+    tag_list=params[:post_image][:name].split('、')
     if @post_image.save
        @post_image.save_tag(tag_list)
       redirect_to post_images_path
     else
       render :new
     end
-  end
-
-  def index
-    @post_images = PostImage.page(params[:page])
-    @tag_list=Tag.all
-    @genres = Genre.all
   end
 
   def show
@@ -38,12 +38,12 @@ class Public::PostImagesController < ApplicationController
 
   def edit
     @post_image = PostImage.find(params[:id])
-    @tag_list=@post_image.tags.pluck(:name).join(',')
+    @tag_list=@post_image.tags.pluck(:name).join('、')
   end
 
   def update
     @post_image = PostImage.find(params[:id])
-    tag_list=params[:post_image][:name].split(',')
+    tag_list=params[:post_image][:name].split('、')
     if @post_image.update(post_image_params)
        @old_relations=PostTag.where(post_image_id: @post_image.id)
        @old_relations.each do |relation|

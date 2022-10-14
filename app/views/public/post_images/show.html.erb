@@ -1,60 +1,83 @@
-<h4 class="mx-4 mb-4">投稿一覧詳細ページ</h4>
-<% @post_tags.each do |tag| %>
-    <%= link_to tag.name,search_tag_path(tag_id: tag.id)%>
-    <%="(#{tag.post_images.count})" %>
-  <% end %>
-
-  <% if @post_image.customer == current_customer %>
-    <%= link_to "タグ編集", edit_post_image_path(@post_image.id) %>
-  <% end %>
-
+<h4 class="mx-4 mb-4">投稿詳細ページ</h4>
 <div class='container'>
+  <div class="row justify-content align-items-center mx-5">
+    <% @post_tags.each do |tag| %>
+    <div class="mr-2 text-dark btn btn-outline-secondary">
+      <%= link_to tag.name,search_tag_path(tag_id: tag.id), class:"ec-genre-list-item text-dark"%>
+     </div>
+    <% end %>
+    <% if @post_image.customer == current_customer %>
+      <%= link_to "タグ編集", edit_post_image_path(@post_image.id) %>
+    <% end %>
+  </div>
+
   <div class='row justify-content-center align-items-center'>
-    <div class='col-auto'>
+    <div class="col-auto m-0 p-0">
     <div class="photo img-thumbnail shadow"style="background-color: #fffafa;">
-    <%= image_tag @post_image.get_image, :size => '400'%>
+    <%= image_tag @post_image.get_image, :size => '430'%>
   </div>
   </div>
+
   <div class='col-auto'>
   <div class="photo img-thumbnail shadow"style="background-color: #fffafa;">
-    <p>タイトル：<%= @post_image.title %></p>
-    <p>説明：<%= @post_image.caption %></p>
-   <p>投稿ユーザーペット画像：<%= image_tag @post_image.customer.get_profile_image(100,100),class:"rounded-circle" %></p>
-  <p>ユーザーネーム：<%= @post_image.customer.pen_name %></p>
-  <p>投稿日：<%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
-  <i class="fas fa-eye"></i><%= @post_image.view_counts.count %>&nbsp;
+    <div class="post_title">
+      <%= @post_image.title %>
+    </div>
+      <%= @post_image.caption %>
+    <%= link_to customer_path(current_customer.id),class:"nav-link text-dark" do %>
+    <div style="background-color: #ffe4c4">
+      <%= @post_image.customer.pen_name %> さんちの<br>
+      <%= image_tag @post_image.customer.get_profile_image(100,100),class:"rounded-circle" %>
+      <span class="pet_title">
+        <%= @post_image.customer.pet_name %>
+      </span> ちゃん<br>
+      <div class="view">
+          <%= @post_image.created_at.strftime('%Y/%m/%d') %>&nbsp;
+          <i class="fas fa-eye"></i><%= @post_image.view_counts.count %>&nbsp;
           <i class="fas fa-handshake"></i><%= @post_image.customer.followers.count %>&nbsp;
           <i class="fas fa-comments"></i><%= @post_image.post_comments.count %>&nbsp;
-  <%= render "public/favorites/btn", post_image: @post_image %>
-  <% if @post_image.customer == current_customer %>
-    <%= link_to "削除", post_image_path(@post_image), method: :delete, class:"btn btn-danger " %>
-  <% end %>
+          <% if customer_signed_in? %>
+          <%= render "public/favorites/btn", post_image: @post_image %>
+          <% end %>
+          <% end %>
+      </div>
+      <div class="p-2 text-right">
+        <% if @post_image.customer == current_customer %>
+          <%= link_to "投稿を削除する", post_image_path(@post_image), method: :delete, class:"btn btn-danger " %>
+        <% end %>
+      </div>
+    </div>
   </div>
-  </div>
-  </div>
+ </div>
+ </div>
 
-  <div class="row justify-content-center align-items-center">
-  <div class="col">
-    <% @post_image.post_comments.each do |post_comment| %>
-    <%= image_tag post_comment.customer.get_profile_image(100,100) %>
-    <%= post_comment.customer.name %><br>
-    <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
-    <% if post_comment.customer == current_customer %>
-      <%= link_to "削除", post_image_post_comment_path(post_comment.post_image, post_comment), method: :delete %>
-    <% end %>
-  <% end %>
-  </div>
-  </div>
-
-  <div class="row justify-content-center align-items-center">
+ <div class="row justify-content-center align-items-center pt-3">
   <%= form_with model: [@post_image, @post_comment] do |f| %>
-    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.text_area :comment,:size=>"50x3", placeholder: "コメントはこちら" %>
     <%= f.submit "送信する" %>
   <% end %>
   </div>
 
+  <div class="row justify-content-center align-items-center">
+    <div class="back-postimage shadow m-1">
+      <% @post_image.post_comments.each do |post_comment| %>
+    <div class="col-auto m-3">
+      <%= image_tag post_comment.customer.get_profile_image(100,100),class:"rounded-circle"  %>
+      <%= post_comment.customer.pen_name %>&nbsp;さん
+      <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+    <div class="comment m-1">
+      <p><%= post_comment.comment %></p>
+    </div>
+      <div class="p-2 text-right">
+        <% if post_comment.customer == current_customer %>
+          <%= link_to "コメントを削除", post_image_post_comment_path(post_comment.post_image, post_comment), method: :delete, class:"btn btn-danger " %>
+        <% end %>
+      </div>
+     </div>
+        <% end %>
+    </div>
   </div>
-
+ </div>
 
 
 

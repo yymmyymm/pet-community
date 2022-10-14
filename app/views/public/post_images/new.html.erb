@@ -1,8 +1,9 @@
-<div class='container'>
-  <h4 class="text-center">投稿フォーム</h4>
-      <div class="row justify-content-center align-items-center">
-
-
+<div class="container">
+  <div class="row">
+    <div class="col-5 px-0 mx-auto">
+      <div class="mb-4">
+      <h4>新規投稿フォーム</h4>
+     </div>
 
   <% if @post_image.errors.any? %>
     <%= @post_image.errors.count %>件のエラーが発生しました
@@ -14,17 +15,19 @@
   <% end %>
 
   <%= form_with model: @post_image do |f| %>
+
     <h5>画像</h5>
       <%= f.file_field :image, accept: "image/*" %>
     <h5>タイトル</h5>
       <%= f.text_field :title, placeholder:"タイトル" %>
     <h5>説明(任意)</h5>
       <%= f.text_area :caption, placeholder:"説明" %>
-    <h5>タグ</h5><p>,で区切ると複数タグ登録できます</p>
+    <h5>タグ</h5><p>、で区切ると複数タグ登録できます</p>
       <%= f.text_field :name,value: @tag_list %>
    <h5>ジャンル</h5>
         <%= f.collection_select :genre_id, Genre.all, :id, :name, :prompt => "--選択してください--" %></th>
     <%= f.submit '投稿' %>
   <% end %>
+  </div>
   </div>
   </div>
