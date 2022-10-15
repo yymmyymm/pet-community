@@ -7,6 +7,9 @@ class Customer < ApplicationRecord
   has_many :post_images, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :customer_rooms
+  has_many :chats
+  has_many :rooms, through: :customer_rooms
   has_many :view_counts, dependent: :destroy
   has_many :group_members, dependent: :destroy
 
@@ -17,6 +20,12 @@ class Customer < ApplicationRecord
   has_many :followers, through: :reverse_of_relationships, source: :follower
 
   has_one_attached :profile_image
+
+  validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
+  validates :name_kana, length: { minimum: 2, maximum: 20 }, uniqueness: true
+  validates :pen_name, length: { minimum: 2, maximum: 20 }, uniqueness: true
+  validates :pet_name, length: { minimum: 2, maximum: 20 }, uniqueness: true
+  validates :introduction, length: { maximum: 50 }
 
   def get_profile_image(width, height)
     unless profile_image.attached?

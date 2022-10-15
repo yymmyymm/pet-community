@@ -2,8 +2,8 @@ class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
 
   def show
-    @customer = Customer.find(params[:id])
     @post_images = @customer.post_images.page(params[:page])
+    @customer = Customer.find(params[:id])
   end
 
   def index

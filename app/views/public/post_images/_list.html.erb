@@ -1,14 +1,39 @@
-<% post_images.each do |post_image| %>
-<div>
-  <%= link_to post_image_path(post_image.id) do %>
-    <%= image_tag post_image.get_image, :size => '200' %>
-  <% end %>
-  <p>投稿ユーザー画像：<%= image_tag post_image.customer.get_profile_image(100,100),class:"rounded-circle"  %></p>
-  <p>タイトル：<%= post_image.title %></p>
-  <p>説明：<%= post_image.caption %></p>
-  <p>ユーザーネーム：<%= post_image.customer.pen_name %></p>
-  <p>コメント：<%= link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id) %></p>
-  <p>メインカテゴリー：<%= link_to post_image.category, search_post_image_path(keyword: post_image.category) %></p>
-</div>
-<% end %>
-<%= paginate post_images %>
+<div class="row justify-content-center align-items-center ">
+      <% post_images.each do |post_image|%>
+      <div class="img-thumbnail shadow m-2 mr-2 ml-2"style="background-color: #fffafa;">
+      <div class="mx-1">
+        <%= link_to post_image_path(post_image), class: "text-dark nav-link" do %>
+
+
+        <%= image_tag post_image.image, :size => '250', class: "border" %><br>
+        <div class="post_title">
+          <%= post_image.title.truncate(10) %>
+        </div>
+          <%= post_image.caption.truncate(12) %>
+        <div style="background-color: #ffe4c4">
+        <%= post_image.customer.pen_name %> さんちの<br>
+        <%= image_tag post_image.customer.get_profile_image(30,30),class:"rounded-circle" %>
+        <span class="pet_title">
+          <%= post_image.customer.pet_name %>
+        </span> ちゃん<br>
+        <div class="view">
+          <%= post_image.created_at.strftime('%Y/%m/%d') %>&nbsp;
+          <i class="fas fa-eye"></i><%= post_image.view_counts.count %>&nbsp;
+          <i class="fas fa-handshake"></i><%= post_image.customer.followers.count %>&nbsp;
+          <i class="fas fa-comments"></i><%= post_image.post_comments.count %>&nbsp;
+          <% if customer_signed_in? %>
+          <%= render "public/favorites/btn", post_image: post_image %>
+          <% end %>
+        </div>
+        </div>
+        <% end %>
+        </div>
+        </div>
+      <% end %>
+    </div>
+
+      <div class="row">
+        <div class="m-auto mt-3">
+          <%= paginate post_images %>
+        </div>
+      </div>

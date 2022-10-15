@@ -5,8 +5,12 @@
     </div>
   </div>
 
+    <%= link_to "編集する", edit_admin_customer_path(@customer.id), class: 'btn btn-success m-3' %>
   <div class="row justify-content-center">
-    <div class="col-md-8">
+    <div class="col-auto">
+      <%= image_tag @customer.get_profile_image(300,300) %>
+    </div>
+    <div class="col-auto mt-2">
       <table class="table shadow-lg">
         <tr>
           <th class="table-active">会員ID</th>
@@ -17,8 +21,20 @@
           <td><%= "#{@customer.name}" %></td>
         </tr>
         <tr>
+          <th class="table-active">ユーザーネーム</th>
+          <td><%= @customer.pen_name %></td>
+        </tr>
+        <tr>
+          <th class="table-active">ペットネーム</th>
+          <td><%= @customer.pet_name %></td>
+        </tr>
+        <tr>
           <th class="table-active">メールアドレス</th>
           <td><%= @customer.email %></td>
+        </tr>
+        <tr>
+          <th class="table-active">紹介文</th>
+          <td><%= @customer.introduce %></td>
         </tr>
         <tr>
           <th class="table-active">会員ステータス</th>
@@ -28,22 +44,23 @@
           <td class="text-success font-weight-bold">有効</td>
             <% end %>
           </tr>
-          <%= link_to "編集する", edit_admin_customer_path(@customer.id), class: 'btn btn-success m-3' %>
       </table>
     </div>
   </div>
   </div>
-<% @post_images.each do |post_image| %>
-<div>
-  <%= link_to admin_post_image_path(post_image.id) do %>
-    <%= image_tag post_image.get_image, :size => '200' %>
 
-  <p>タイトル：<%= post_image.title %></p>
-  <p>説明：<%= post_image.caption %></p>
-  <p>ユーザーネーム：<%= post_image.customer.pen_name %></p>
+<div class="row justify-content-center align-items-center ">
+<% @post_images.each do |post_image| %>
+  <div class="col-auto img-thumbnail m-1"style="background-color: #fffafa;">
+  <%= link_to admin_post_image_path(post_image.id), class: "text-dark nav-link" do %>
+  <p>投稿ID:<%= post_image.id %></p>
+  <p><%= post_image.created_at.strftime('%Y/%m/%d') %></p>
+  <p><%= image_tag post_image.get_image, :size => '200' %></p>
+  <p>タイトル：<%= post_image.title.truncate(8) %></p>
   <p>コメント件数：<%= post_image.post_comments.count %></p>
 <% end %>
 </div>
 <% end %>
+</div>
 
 <%= paginate @post_images %>

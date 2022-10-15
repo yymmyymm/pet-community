@@ -1,21 +1,21 @@
-<%= form_with(model: @contact, local: true) do |f| %>
-
-    <div class='form-wrap'>
-      <div class='form-header'>
-        <h5 class='form-header-text'>
-          お問い合わせフォーム
-        </h5>
+  <div class="container">
+    <div class="row">
+      <div class="col-5 px-0 mx-auto">
+        <div class="mb-4">
+        <h4>新規投稿フォーム</h4>
       </div>
-    </div>
-    <div class="correct-msg-box">
-      <% if @contact.errors.any? %>
-        <div id="error_explanation">
-          <ul><% @contact.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
+       
+      <div class="correct-msg-box">
+        <% if @contact.errors.any? %>
+          <div id="error_explanation">
+            <ul><% @contact.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
             <% end %>
-          </ul>
-        </div>
-      <% end %>
+            </ul>
+          </div>
+        <% end %>
+        
+      <%= form_with(model: @contact, local: true) do |f| %>
       <div class="correct-msg-main">
         <div class="contact-form">
             <div class="correct-text-field">
@@ -27,16 +27,16 @@
               <%= f.text_area :content, placeholder: "お問合せ内容を入力してください", class: "input-form" %>
             </div>
             <div class="send-btn-contents">
-              <div class="register-btn">
+              <div class="register-btn text-right mb-5">
                 <%= f.button type: "submit", class:"register-red-btn", style:'border-style: none;' do %>
                   送信 <i class="fas fa-paper-plane"></i>
                 <% end %>
               </div>
-              <div class="register-btn">
-                <%= link_to "もどる", root_path, class:"register-red-btn", style:"background-color: #aaa" %>
-              </div>
             </div>
         </div>
       </div>
+      </div>
+      <% end %>
+      </div>
+    </div>
   </div>
-<% end %>

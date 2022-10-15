@@ -14,7 +14,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 }
 
 namespace :admin do
-    get '/top' => 'homes#top'
+    get '' => 'homes#top'
     resources :customers, only: [:index, :show, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update, :destroy]
     resources :post_images do
@@ -53,13 +53,9 @@ scope module: :public do
     resource :group_menmbers, only: [:create, :destroy]
   end
   resources :contacts, only: [:new, :create]
+  resources :chats, only: [:show, :create]
+  resources :rooms, only: [:create, :index, :show]
 end
-
-
-
-resources :posts, only: [:index, :show]
-
-
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
