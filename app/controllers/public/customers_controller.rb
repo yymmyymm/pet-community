@@ -2,7 +2,7 @@ class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
 
   def show
-    @post_images = @customer.post_images.page(params[:page])
+    @post_images = PostImage.page(params[:page])
     @customer = Customer.find(params[:id])
   end
 
@@ -42,6 +42,6 @@ class Public::CustomersController < ApplicationController
   private
 
   def customer_params
-    params.require(:customer).permit(:name,:name_kana,:email,:pen_name,:pet_name,:introduce,:profile_image)
+    params.require(:customer).permit(:name,:name_kana,:email,:pen_name,:pet_name,:introduce,:profile_image,:is_deleted)
   end
 end

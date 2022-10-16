@@ -19,7 +19,13 @@ class Public::ChatsController < ApplicationController
 
   def create
     @chat = current_customer.chats.new(chat_params)
-    render :validater unless @chat.save
+    @chat.save
+    redirect_to request.referer
+  end
+
+  def destroy
+    Chat.find(params[:id]).destroy
+    redirect_to request.referer
   end
 
   private

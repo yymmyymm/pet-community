@@ -1,6 +1,6 @@
 class Public::GroupsController < ApplicationController
   before_action :authenticate_customer!
-
+  before_action :ensure_correct_customer, only: [:edit, :update]
 
   def new
     @group =Group.new
@@ -44,5 +44,10 @@ class Public::GroupsController < ApplicationController
     params.require(:group).permit(:name, :introduction, :group_image)
   end
 
-
+  def ensure_correct_customer
+    @group = Group.find(params[:id])
+    unless @group.owner_id == current_customer.id
+      redirect_to groups_path
+    end
+  end
 end

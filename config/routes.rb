@@ -44,16 +44,15 @@ scope module: :public do
       get "followings" => "relationships#followings", as: "followings"
       get "followers" => "relationships#followers", as: "followers"
   end
-
   get 'search', to: 'searches#search'
   get "search_post_image" => "post_images#search_post_image"
   get "search_tag"=>"post_images#search_tag"
   resources :genres, only: [:show, :index]
   resources :groups, only: [:new, :index, :show, :create, :edit, :update] do
-    resource :group_menmbers, only: [:create, :destroy]
+    resource :group_members, only: [:create, :destroy]
   end
   resources :contacts, only: [:new, :create]
-  resources :chats, only: [:show, :create]
+  resources :chats, only: [:show, :create, :destroy]
   resources :rooms, only: [:create, :index, :show]
 end
 

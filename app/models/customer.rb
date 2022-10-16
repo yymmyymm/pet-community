@@ -24,8 +24,6 @@ class Customer < ApplicationRecord
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :name_kana, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :pen_name, length: { minimum: 2, maximum: 20 }, uniqueness: true
-  validates :pet_name, length: { minimum: 2, maximum: 20 }, uniqueness: true
-  validates :introduction, length: { maximum: 50 }
 
   def get_profile_image(width, height)
     unless profile_image.attached?
@@ -47,15 +45,8 @@ class Customer < ApplicationRecord
     followings.include?(customer)
   end
 
-  def self.search_for(content, method)
-    if method == "perfect"
-      Customer.where(name: content)
-    elsif method == "forward"
-      Customer.where("name LIKE ?", content + "%")
-    elsif method == "backward"
-      Customer.where("name LIKE ?", "%" + content)
-    else
-      Customer.where("name LIKE ?", "%" + content + "%")
-    end
+  def self.search_for(content)
+     Customer.where(['name LIKE(?) OR pen_name LIKE(?) OR pet_name LIKE(?) OR introduce LIKE(?)',"%#{content}%","%#{content}%" ,"%#{content}%","%#{content}%"])
   end
+
 end

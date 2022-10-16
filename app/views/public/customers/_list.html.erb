@@ -1,7 +1,6 @@
     <table class="table shadow">
         <thead class="table-active">
           <tr>
-            <th>会員ID</th>
             <th>ユーザーネーム</th>
             <th>プロフィール画像</th>
             <th>ペットネーム</th>
@@ -13,7 +12,6 @@
   <% customers.each do |customer| %>
   <tbody>
     <tr>
-      <td><%= customer.id %></td>
       <td><%= customer.pen_name %></td>
       <td><%= image_tag customer.get_profile_image(100,100)%></td>
       <td><%= customer.pet_name %></td>

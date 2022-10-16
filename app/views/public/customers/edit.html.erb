@@ -35,7 +35,7 @@
     <%= f.text_area :introduce, id:"inputName", placeholder:"ペット紹介"%>
   </div>
 
-  <%= f.submit "変更を保存" %>
+  <%= f.submit "変更を保存", class: "btn btn-success mt-2" %>
   <div>
   <%= link_to unsubscribe_customers_path, class: "ml-5" do %>
     <button type="button" class="btn btn-danger">退会する</button>

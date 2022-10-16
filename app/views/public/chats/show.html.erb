@@ -1,14 +1,14 @@
 
 <div class="container">
-    <div class="row-8">
-
-           <h4 id="room" data-room="<%= @room.id %>" data-user="<%= current_customer.id %>"><%= @customer.pen_name %>さんとのチャット</h4>
+    <div class="row">
+      <div class="col-8">
+           <h4 id="room" data-room="<%= @room.id %>" data-user="<%= current_customer.id %>" class="row justify-content align-items-center mx-5"><%= @customer.pen_name %>さんとのチャット</h4>
              <table class="message table">
               <thead>
                 <tr>
-                  <th><%= image_tag current_customer.get_profile_image(100,100),class:"rounded-circle" %><br>
+                  <th class="text-lefts ml-3"><%= image_tag current_customer.get_profile_image(100,100),class:"rounded-circle" %><br>
                   <%= current_customer.pen_name %></th>
-                  <th><%= image_tag @customer.get_profile_image(100,100),class:"rounded-circle" %><br>
+                  <th class="text-right mr-3"><%= image_tag @customer.get_profile_image(100,100),class:"rounded-circle" %><br>
                   <%= @customer.pen_name %></th>
                 </tr>
               </thead>
@@ -17,7 +17,15 @@
                 <tbody>
                   <tr>
                     <th>
-                      <p style="text-align: left;"><%= chat.message %></p>
+                      <div class="text-align: left;">
+                      <font size="2">
+                      <%= chat.created_at.strftime('%Y/%m/%d') %>
+                      </font><br>
+                      <%= chat.message %><br>
+                      <% if chat.customer == current_customer %>
+                        <%= link_to "削除", chat_path(chat), method: :delete, class:"btn btn-danger " %>
+                      <% end %>
+                      </div>
                     </th>
                     <th></th>
                   </tr>
@@ -25,7 +33,15 @@
                   <tr>
                     <th></th>
                     <th>
-                      <p style="text-align: right;"><%= chat.message %></p>
+                      <div class="text-align: right;">
+                      <font size="2">
+                      <%= chat.created_at.strftime('%Y/%m/%d') %>
+                      </font><br>
+                      <%= chat.message %><br>
+                        <% if chat.customer == current_customer %>
+                          <%= link_to "削除", chat_path(chat), method: :delete, class:"btn btn-danger " %>
+                        <% end %>
+                        </div>
                     </th>
                   </tr>
                 </tbody>
@@ -33,11 +49,11 @@
               <% end %>
             </table>
 
-            <%= form_with model: @chat, remote: true do |f| %>
+            <%= form_with model: @chat do |f| %>
               <%= f.text_field :message %>
               <%= f.hidden_field :room_id %>
-              <%= f.submit "送信", class:"btn btn-sm btn-success chat-btn" %>
+              <%= f.submit "送信", class:"btn btn-sm btn-success chat-btn mb-4" %>
             <% end %>
-
+      </div>
     </div>
 </div>

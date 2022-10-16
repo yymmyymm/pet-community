@@ -1,5 +1,5 @@
 <% if @model == 'customer' %>
-	<h3>"<%= @content %>"さんの検索結果</h3>
+	<h3>"<%= @content %>"の検索結果</h3>
   <%= render 'public/customers/list', customers: @records %>
 <% elsif @model == 'post_image' %>
 	<h3>"<%= @content %>"の投稿一覧</h3>

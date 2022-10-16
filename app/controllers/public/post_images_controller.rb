@@ -71,6 +71,7 @@ class Public::PostImagesController < ApplicationController
     @tag_list=Tag.all
     @tag=Tag.find(params[:tag_id])
     @post_images=@tag.post_images.page(params[:page]).per(10)
+    @genres = Genre.all
   end
 
   def search_post

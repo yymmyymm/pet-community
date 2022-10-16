@@ -1,16 +1,60 @@
-<div class='container'>
-  <div class='row'>
-    <div class="col-md-10">
-      <h4 class="mt-5"><strong><%= @genre.name %>一覧</strong><span class="font">(全<%= @genre_post_images.count %>件)</span></h4>
-      <div class="row mx-auto">
+     <h4 class="mx-4 mb-4"><%= @genre.name %>一覧<span class="font">(全<%= @genre_post_images.count %>件)</span></h4>
+      <div class="row justify-content-center align-items-center ">
 		  	<% @genre_post_images.each do |post_image| %>
-			  	<%= link_to post_image_path(post_image.id), class: "col-3 text-center text-dark text-nowrap mt-5" do %>
-						<%= image_tag post_image.image, :size => '200x150' %><br>
-						<%= post_image.title %><br>
-					<% end %>
+      <div class="img-thumbnail shadow m-2 mr-2 ml-2"style="background-color: #fffafa;">
+        <div class="mx-1">
+			  	<%= link_to post_image_path(post_image.id),class: "text-dark nav-link" do %>
+						<%= image_tag post_image.image, :size => '250x200' %><br>
+						<div class="post_title">
+          <%= post_image.title.truncate(10) %>
+        </div>
+          <%= post_image.caption.truncate(12) %>
+        <div style="background-color: #ffe4c4">
+        <%= post_image.customer.pen_name %> さんちの<br>
+        <%= image_tag post_image.customer.get_profile_image(30,30),class:"rounded-circle" %>
+        <span class="pet_title">
+          <%= post_image.customer.pet_name %>
+        </span> ちゃん<br>
+        <div class="view">
+          <%= post_image.created_at.strftime('%Y/%m/%d') %>&nbsp;
+          <i class="fas fa-eye"></i><%= post_image.view_counts.count %>&nbsp;
+          <i class="fas fa-handshake"></i><%= post_image.customer.followers.count %>&nbsp;
+          <i class="fas fa-comments"></i><%= post_image.post_comments.count %>&nbsp;
+          <% if customer_signed_in? %>
+          <%= render "public/favorites/btn", post_image: post_image %>
+          <% end %>
+        </div>
+        </div>
+        <% end %>
+					 </div>
+        </div>
 			<% end %>
 			</div>
-			<div class="col-md-5 mx-auto"><%= paginate @genre_post_images %></div>
-		</div>
-	</div>
-</div>
+			<div class="row">
+        <div class="m-auto mt-3">
+          <%= paginate @genre_post_images %>
+        </div>
+      </div>
+
+  <% if customer_signed_in? %>
+  <h5 class="mx-3">ジャンル検索</h5>
+  <div class="row justify-content align-items-center mx-5">
+    <% @genres.each do |genre| %>
+  <div class="mt-1 mr-2 text-dark">
+    <%= link_to genre.name, genre_path(genre.id), class:"btn btn-info text-white"%>
+  </div>
+    <% end %>
+  </div>
+
+  <h5 class="mx-3">タグ検索</h4>
+  <div class="row justify-content align-items-center mx-5 mb-3 ">
+    <% @tag_list.each do |list|%>
+      <% unless list.post_images.count == 0 %>
+      <div class="mr-2 text-dark btn btn-outline-secondary">
+        <%=link_to list.name,search_tag_path(tag_id: list.id), class:"ec-genre-list-item text-dark" %>
+        <%="(#{list.post_images.count})" %>
+      </div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
