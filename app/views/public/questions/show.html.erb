@@ -1,0 +1,29 @@
+<div>
+  <%= image_tag @question.get_q_image(30,30) %>
+  <p>ショップ名：<%= @question.q_title %></p>
+  <p>説明：<%= @question.q_caption %></p>
+  <p>投稿ユーザー：<%= image_tag @question.customer.get_profile_image(30,30) %></p>
+  <p>ユーザーネーム：<%= @question.customer.pen_name %></p>
+  <p>投稿日：<%= @question.created_at.strftime('%Y/%m/%d') %></p>
+   <% if @question.customer == current_customer %>
+    <%= link_to "削除", question_path(@question), method: :delete %>
+  <% end %>
+</div>
+
+<div>
+  <p>コメント件数：<%= @question.question_comments.count %></p>
+  <% @question.question_comments.each do |question_comment| %>
+    <p><%= image_tag question_comment.customer.get_profile_image(100,100) %></p>
+    <%= question_comment.customer.pen_name %>
+    <%= question_comment.created_at.strftime('%Y/%m/%d') %><%= question_comment.q_comment %>
+    <% if question_comment.customer == current_customer %>
+      <%= link_to "削除", question_question_comment_path(question_comment.question, question_comment), method: :delete %>
+    <% end %>
+  <% end %>
+</div>
+<div>
+  <%= form_with model: [@question, @question_comment] do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
+</div>

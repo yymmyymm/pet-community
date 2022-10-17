@@ -32,6 +32,9 @@ scope module: :public do
     resource :favorites, only: [:create, :destroy]
     resources :post_comments, only: [:create, :destroy]
   end
+  resources :questions do
+    resources :question_comments, only: [:create, :destroy]
+  end
   resources :customers,only:[:show, :index, :edit, :update] do
       collection do
         get 'unsubscribe'

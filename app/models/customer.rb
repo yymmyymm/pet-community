@@ -6,6 +6,8 @@ class Customer < ApplicationRecord
 
   has_many :post_images, dependent: :destroy
   has_many :post_comments, dependent: :destroy
+  has_many :questions, dependent: :destroy
+  has_many :question_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :customer_rooms
   has_many :chats

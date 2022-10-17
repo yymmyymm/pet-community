@@ -14,11 +14,14 @@ class Admin::CustomersController < ApplicationController
 
   def edit
     @customer = Customer.find(params[:id])
+    @post_image = PostImage.find_by(params[:id])
   end
 
   def update
     @customer = Customer.find(params[:id])
+    @post_image = PostImage.find_by(params[:post_image_id])
     @customer.update(customer_params)
+    @post_image.update(post_image_params)
     redirect_to admin_customer_path(@customer.id)
   end
 
@@ -28,6 +31,9 @@ class Admin::CustomersController < ApplicationController
     params.require(:customer).permit(:name,:name_kana,:email,:pen_name,:pet_name,:post_code,:introduce,:profile_image,:is_deleted)
   end
 
+  def post_image_params
+    params.require(:post_image).permit(:is_deleted_post)
+  end
 
 
 end

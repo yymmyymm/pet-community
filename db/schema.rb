@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_15_095501) do
+ActiveRecord::Schema.define(version: 2022_10_17_053617) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -163,7 +163,7 @@ ActiveRecord::Schema.define(version: 2022_10_15_095501) do
     t.string "title", null: false
     t.text "caption"
     t.string "category"
-    t.boolean "is_deleted", default: false, null: false
+    t.boolean "is_deleted_post", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -176,6 +176,24 @@ ActiveRecord::Schema.define(version: 2022_10_15_095501) do
     t.index ["post_image_id", "tag_id"], name: "index_post_tags_on_post_image_id_and_tag_id", unique: true
     t.index ["post_image_id"], name: "index_post_tags_on_post_image_id"
     t.index ["tag_id"], name: "index_post_tags_on_tag_id"
+  end
+
+  create_table "question_comments", force: :cascade do |t|
+    t.text "q_comment"
+    t.integer "customer_id"
+    t.integer "question_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.integer "genre_id"
+    t.string "q_title", null: false
+    t.text "q_caption"
+    t.boolean "is_deleted_q", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "relationships", force: :cascade do |t|

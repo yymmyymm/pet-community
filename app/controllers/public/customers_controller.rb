@@ -2,12 +2,12 @@ class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
 
   def show
-    @post_images = PostImage.page(params[:page])
     @customer = Customer.find(params[:id])
+    @post_images = @customer.post_images.page(params[:page]).order(created_at: :desc)
   end
 
   def index
-    @customers = Customer.all
+    @customers = Customer.where(is_deleted: false)
     @post_image = PostImage.find_by(params[:id])
   end
 

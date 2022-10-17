@@ -34,20 +34,19 @@
                   <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
                 </li>
               <% elsif customer_signed_in? %>
-
               <li class="text-right">
                 <%= link_to post_images_path, class: 'nav-link text-dark' do %>
                   投稿一覧&nbsp;<i class="fas fa-book"></i>
                 <% end %>
               </li>
+               <li class="text-right">
+                 <%= link_to questions_path, class: 'nav-link text-dark' do %>
+                 相談一覧&nbsp;<i class="fas fa-question"></i>
+                 <% end %>
+              </li>
               <li class="text-right">
                 <%= link_to customers_path, class: 'nav-link text-dark' do %>
                 <i class="fas fa-dog"></i>&nbsp;会員＆ペット一覧&nbsp;<i class="fas fa-cat"></i>
-                <% end %>
-              </li>
-              <li class="text-right">
-                <%= link_to new_post_image_path, class: 'nav-link text-dark' do %>
-                投稿フォーム&nbsp;<i class="fas fa-pen"></i>
                 <% end %>
               </li>
               <li class="text-right">

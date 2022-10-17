@@ -1,4 +1,6 @@
-<h4 class="mx-4 mb-4">投稿一覧</h4>
+<h4 class="mx-4 mb-4">投稿一覧<span><%= link_to "画像投稿フォーム",new_post_image_path, class: 'btn btn-success ml-4' %>
+</h4>
+
     <div class="row justify-content-center align-items-center ">
       <% @post_images.each do |post_image|%>
       <div class="img-thumbnail shadow m-2 mr-2 ml-2"style="background-color: #fffafa;">

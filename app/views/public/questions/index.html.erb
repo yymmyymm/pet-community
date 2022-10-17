@@ -1,0 +1,15 @@
+<h4 class="mx-4 mb-4">相談一覧<span><%= link_to '相談投稿フォーム', new_question_path, class: 'btn btn-success ml-4' %></h4>
+
+<div class="col-auto justify-content-center align-items-center">
+<% @questions.each do |question| %>
+<div class="img-thumbnail shadow ml-5 mr-5 mb-2 pl-5 pr-5"style="background-color: #fffafa;">
+  <%= link_to question_path(question.id), class: "text-dark nav-link" do %>
+  <i class="fas fa-comment"></i><span class="pet_title"><%= question.q_title.truncate(12) %>
+  </span>
+  <p><%= question.q_caption.truncate(12) %></p>
+  <p><%= image_tag question.customer.get_profile_image(30,30) %><%= question.customer.pen_name %>&nbsp;さん</p>
+  <p><%= question.created_at.strftime('%Y/%m/%d') %>&nbsp;回答件数：<%= question.question_comments.count %></p>
+  <% end %>
+</div>
+<% end %>
+</div>
