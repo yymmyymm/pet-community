@@ -24,10 +24,6 @@ class PostImage < ApplicationRecord
     favorites.exists?(customer_id: customer.id)
   end
 
-  def self.search(search_word)
-    PostImage.where(['category LIKE ?', "#{search_word}"])
-  end
-
   def self.search_for(content)
     PostImage.where(['title LIKE(?) OR caption LIKE(?)',"%#{content}%","%#{content}%"])
   end

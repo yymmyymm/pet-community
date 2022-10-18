@@ -3,5 +3,8 @@
   <%= render 'public/customers/list', customers: @records %>
 <% elsif @model == 'post_image' %>
 	<h3>"<%= @content %>"の投稿一覧</h3>
-  <%= render 'public/post_images/list', post_images: @records %>
+<%= render 'public/post_images/list', post_images: @records %>
+<% else @model == 'question' %>
+<h3>"<%= @content %>"の相談一覧</h3>
+  <%= render 'public/questions/list', questions: @records %>
 <% end %>

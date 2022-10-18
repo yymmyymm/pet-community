@@ -7,7 +7,7 @@ class Public::HomesController < ApplicationController
     @customers = Customer.all
     @genres = Genre.all
     @tag_list=Tag.all
-
+    @questions = Question.all
   end
 
   def about

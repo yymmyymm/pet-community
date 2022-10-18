@@ -33,6 +33,7 @@ scope module: :public do
     resources :post_comments, only: [:create, :destroy]
   end
   resources :questions do
+    resource :question_favorites, only: [:create, :destroy]
     resources :question_comments, only: [:create, :destroy]
   end
   resources :customers,only:[:show, :index, :edit, :update] do
@@ -42,6 +43,7 @@ scope module: :public do
       end
       member do
         get "favorites"
+        get "question_favorites"
       end
     resource :relationships, only: [:create, :destroy]
       get "followings" => "relationships#followings", as: "followings"

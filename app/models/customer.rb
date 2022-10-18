@@ -8,6 +8,7 @@ class Customer < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :questions, dependent: :destroy
   has_many :question_comments, dependent: :destroy
+  has_many :question_favorites, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :customer_rooms
   has_many :chats
@@ -48,7 +49,7 @@ class Customer < ApplicationRecord
   end
 
   def self.search_for(content)
-     Customer.where(['name LIKE(?) OR pen_name LIKE(?) OR pet_name LIKE(?) OR introduce LIKE(?)',"%#{content}%","%#{content}%" ,"%#{content}%","%#{content}%"])
+     Customer.where(['pen_name LIKE(?) OR pet_name LIKE(?) OR introduce LIKE(?)',"%#{content}%","%#{content}%" ,"%#{content}%"])
   end
 
 end

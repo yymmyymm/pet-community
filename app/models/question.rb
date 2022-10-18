@@ -3,6 +3,15 @@ class Question < ApplicationRecord
 
   belongs_to :customer
   has_many :question_comments, dependent: :destroy
+  has_many :question_favorites, dependent: :destroy
+
+  def favorited_by?(customer)
+    question_favorites.exists?(customer_id: customer.id)
+  end
+
+  def self.search_for(content)
+    Question.where(['title LIKE(?) OR caption LIKE(?)',"%#{content}%","%#{content}%"])
+  end
 
   def get_q_image(width, height)
     unless q_image.attached?

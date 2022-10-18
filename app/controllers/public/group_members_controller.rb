@@ -1,6 +1,5 @@
 class Public::GroupMembersController < ApplicationController
 
-
   def create
     group_member = current_customer.group_members.new(group_id: params[:group_id])
     group_member.save

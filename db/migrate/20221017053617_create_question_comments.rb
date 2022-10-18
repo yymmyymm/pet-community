@@ -1,7 +1,7 @@
 class CreateQuestionComments < ActiveRecord::Migration[6.1]
   def change
     create_table :question_comments do |t|
-      t.text :q_comment
+      t.text :comment
       t.integer :customer_id
       t.integer :question_id
 

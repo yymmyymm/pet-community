@@ -3,8 +3,8 @@
     <h4>写真の貼付（任意）</h4>
       <%= f.file_field :q_image, accept: "image/*" %>
     <h4>相談のタイトル</h4>
-      <%= f.text_field :q_title %>
+      <%= f.text_field :title %>
     <h4>相談の本文</h4>
-      <%= f.text_area :q_caption %>
+      <%= f.text_area :caption %>
     <%= f.submit '投稿' %>
   <% end %>

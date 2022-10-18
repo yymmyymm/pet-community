@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_17_053617) do
+ActiveRecord::Schema.define(version: 2022_10_18_022850) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -179,7 +179,14 @@ ActiveRecord::Schema.define(version: 2022_10_17_053617) do
   end
 
   create_table "question_comments", force: :cascade do |t|
-    t.text "q_comment"
+    t.text "comment"
+    t.integer "customer_id"
+    t.integer "question_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "question_favorites", force: :cascade do |t|
     t.integer "customer_id"
     t.integer "question_id"
     t.datetime "created_at", precision: 6, null: false
@@ -189,8 +196,8 @@ ActiveRecord::Schema.define(version: 2022_10_17_053617) do
   create_table "questions", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.integer "genre_id"
-    t.string "q_title", null: false
-    t.text "q_caption"
+    t.string "title", null: false
+    t.text "caption"
     t.boolean "is_deleted_q", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

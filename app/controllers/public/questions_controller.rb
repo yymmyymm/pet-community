@@ -12,7 +12,7 @@ class Public::QuestionsController < ApplicationController
   end
 
   def index
-    @questions = Question.all
+    @questions = Question.page(params[:page]).order(created_at: :desc)
   end
 
   def show
@@ -29,6 +29,6 @@ class Public::QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:q_title, :q_image, :q_caption)
+    params.require(:question).permit(:title, :q_image, :caption)
   end
 end

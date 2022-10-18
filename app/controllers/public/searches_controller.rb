@@ -6,8 +6,10 @@ class Public::SearchesController < ApplicationController
     @content = params[:content]
     if @model == "customer"
       @records = Customer.search_for(@content).page(params[:page])
-    else
+    elsif @model == "post_image"
       @records = PostImage.search_for(@content).page(params[:page])
+    else
+      @records = Question.search_for(@content).page(params[:page])
     end
   end
 end

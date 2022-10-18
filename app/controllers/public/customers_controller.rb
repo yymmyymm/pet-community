@@ -34,9 +34,14 @@ class Public::CustomersController < ApplicationController
 
   def favorites
     @customer = Customer.find(params[:id])
-    favorites= Favorite.where(customer_id: @customer.id).pluck(:post_image_id)
+    favorites = Favorite.where(customer_id: @customer.id).pluck(:post_image_id)
     @favorites = PostImage.find(favorites)
-    @post_images = @customer.post_images.page(params[:page])
+  end
+
+  def question_favorites
+    @customer = Customer.find(params[:id])
+    question_favorites = QuestionFavorite.where(customer_id: @customer.id).pluck(:question_id)
+    @question_favorites = Question.find(question_favorites)
   end
 
   private
