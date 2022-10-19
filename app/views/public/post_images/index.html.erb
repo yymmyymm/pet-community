@@ -53,7 +53,7 @@
   <div class="row justify-content align-items-center mx-5 mb-3 ">
     <% @tag_list.each do |list|%>
       <% unless list.post_images.count == 0 %>
-      <div class="mr-2 text-dark btn btn-outline-secondary">
+      <div class="mr-2 text-dark">
         <%=link_to list.name,search_tag_path(tag_id: list.id), class:"ec-genre-list-item text-dark" %>
         <%="(#{list.post_images.count})" %>
       </div>

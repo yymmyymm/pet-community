@@ -1,5 +1,5 @@
 class Public::PostImagesController < ApplicationController
- before_action :authenticate_customer!
+  before_action :authenticate_customer!
 
   def new
     @post_image = PostImage.new
@@ -19,7 +19,7 @@ class Public::PostImagesController < ApplicationController
     tag_list=params[:post_image][:name].split('、')
     if @post_image.save
        @post_image.save_tag(tag_list)
-      redirect_to post_images_path
+      redirect_to post_images_path,notice:'投稿完了しました:)'
     else
       render :new
     end
@@ -27,6 +27,7 @@ class Public::PostImagesController < ApplicationController
 
   def show
     @post_image = PostImage.find(params[:id])
+  
     unless ViewCount.find_by(customer_id: current_customer.id, post_image_id: @post_image.id)
       current_customer.view_counts.create(post_image_id: @post_image.id)
     end

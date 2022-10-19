@@ -1,10 +1,29 @@
-<h1>相談投稿フォーム</h1>
-  <%= form_with model: @question do |f| %>
-    <h4>写真の貼付（任意）</h4>
-      <%= f.file_field :q_image, accept: "image/*" %>
-    <h4>相談のタイトル</h4>
-      <%= f.text_field :title %>
-    <h4>相談の本文</h4>
-      <%= f.text_area :caption %>
-    <%= f.submit '投稿' %>
+<div class="container">
+
+  <% if @question.errors.any? %>
+    <%= @question.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @question.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
   <% end %>
+
+  <div class="row">
+    <div class="col-5 p-1 mx-auto mb-3">
+      <div class="mb-4">
+      <h4>相談投稿フォーム</h4>
+    </div>
+
+      <%= form_with model: @question do |f| %>
+        <h5>画像（任意）</h5>
+          <%= f.file_field :q_image, accept: "image/*" %>
+        <h5>相談のタイトル</h5>
+          <%= f.text_field :title, placeholder:"タイトル" %>
+        <h5>相談の本文</h5>
+          <%= f.text_area :caption,:size=>"30x4", placeholder:"相談の本文" %>
+        <%= f.submit '投稿',class:"btn btn-success mt-2" %>
+        <% end %>
+      </div>
+  </div>
+</div>

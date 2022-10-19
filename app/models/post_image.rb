@@ -11,6 +11,7 @@ class PostImage < ApplicationRecord
 
   validates :title, presence: true
   validates :image, presence: true
+  validates :caption, length: { maximum: 200 }
 
   def get_image
     unless image.attached?

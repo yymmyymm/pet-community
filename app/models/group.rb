@@ -6,7 +6,7 @@ class Group < ApplicationRecord
   has_many :customers, through: :group_members, source: :customer
 
   validates :name, presence: true
-  validates :introduction, presence: true
+  validates :introduction, presence: true, length: { maximum: 120 }
 
   def get_group_image(width, height)
     unless group_image.attached?

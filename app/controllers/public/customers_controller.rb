@@ -17,8 +17,11 @@ class Public::CustomersController < ApplicationController
 
   def update
     @customer = current_customer
-    @customer.update(customer_params)
-    redirect_to customer_path(current_customer.id)
+    if @customer.update(customer_params)
+       redirect_to customer_path(current_customer.id),notice:'プロフィール編集しました:)'
+    else
+      render :edit
+    end
   end
 
   def withdrawal

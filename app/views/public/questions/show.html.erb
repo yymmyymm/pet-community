@@ -41,7 +41,7 @@
     <% @question.question_comments.each do |question_comment| %>
     <div class="col-auto m-3">
     <%= image_tag question_comment.customer.get_profile_image(100,100),class:"rounded-circle" %>
-    <%= question_comment.customer.pen_name %>
+    <%= question_comment.customer.pen_name %>&nbsp;さん
     <%= question_comment.created_at.strftime('%Y/%m/%d') %>
     <div class="comment m-1">
     <%= question_comment.comment %>

@@ -20,9 +20,9 @@ class Public::GroupsController < ApplicationController
     @group = Group.new(group_params)
     @group.owner_id = current_customer.id
     if @group.save
-      redirect_to groups_path
+      redirect_to groups_path,notice:'作成完了しました:)'
     else
-      render 'new'
+      render:new
     end
 
   end
@@ -32,9 +32,9 @@ class Public::GroupsController < ApplicationController
 
   def update
     if @group.update(group_params)
-      redirect_to groups_path
+      redirect_to groups_path,notice:'編集完了しました:)'
     else
-      render "edit"
+      render:edit
     end
   end
 

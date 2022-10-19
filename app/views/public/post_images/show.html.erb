@@ -24,7 +24,7 @@
       <%= @post_image.title %>
     </div>
       <%= @post_image.caption %>
-    <%= link_to customer_path(current_customer.id),class:"nav-link text-dark" do %>
+    <%= link_to customer_path(@post_image.customer),class:"nav-link text-dark" do %>
     <div style="background-color: #ffe4c4">
       <%= @post_image.customer.pen_name %> さんちの<br>
       <%= image_tag @post_image.customer.get_profile_image(100,100),class:"rounded-circle" %>

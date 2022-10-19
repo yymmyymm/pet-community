@@ -5,6 +5,9 @@ class Question < ApplicationRecord
   has_many :question_comments, dependent: :destroy
   has_many :question_favorites, dependent: :destroy
 
+  validates :title, presence: true
+  validates :caption, presence: true,length: { maximum: 200 }
+
   def favorited_by?(customer)
     question_favorites.exists?(customer_id: customer.id)
   end

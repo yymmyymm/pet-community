@@ -1,3 +1,18 @@
-<% @question_favorites.each do |question|%>
-<%=question.title %>
+<h4 class="mx-4 mb-4">相談お気に入り一覧</h4>
+<div class="row justify-content-center align-items-center">
+<div class="col-8">
+<% @question_favorites.each do |question| %>
+<div class="img-thumbnail shadow ml-2 mr-2 mb-2"style="background-color: #fffafa;">
+  <%= link_to question_path(question.id), class: "text-dark nav-link" do %>
+  <i class="fas fa-question"></i><i class="fas fa-comment"></i>&nbsp;<span class="pet_title"><%= question.title%>
+  </span><br>
+  &nbsp;<%= question.caption.truncate(50) %><br>
+  <%= image_tag question.customer.get_profile_image(50,50),class:"rounded-circle" %>&nbsp;<%= question.customer.pen_name %>&nbsp;さん<br>
+  <%= question.created_at.strftime('%Y/%m/%d') %>
+  <i class="fas fa-laugh"></i><%= question.question_comments.count %>
+  <i class="fas fa-star"></i><%= question.question_favorites.count %>
+  <% end %>
+</div>
 <% end %>
+</div>
+</div>

@@ -1,4 +1,5 @@
 class Public::QuestionsController < ApplicationController
+  before_action :authenticate_customer!
 
   def new
     @question = Question.new
@@ -7,8 +8,11 @@ class Public::QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     @question.customer_id = current_customer.id
-    @question.save
-    redirect_to questions_path
+    if @question.save
+       redirect_to questions_path,notice:'投稿完了しました:)'
+    else
+      render :new
+    end
   end
 
   def index

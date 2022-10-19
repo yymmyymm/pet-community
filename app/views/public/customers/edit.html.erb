@@ -1,4 +1,14 @@
 <div class="container">
+
+  <% if @customer.errors.any? %>
+    <%= @customer.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @customer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
   <div class="row">
     <div class="col-5 px-0 mx-auto">
       <div class="mb-4">
@@ -7,40 +17,36 @@
 
 <%= form_with model: @customer do |f| %>
   <div>
-    <label for="inputName">名前</label>
+    <label for="inputName">名前</label><br>
     <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%>
   </div>
   <div>
-    <label for="inputName">フリガナ</label>
+    <label for="inputName">フリガナ</label><br>
     <%= f.text_field :name_kana, id:"inputName", placeholder:"フリガナ"%>
   </div>
   <div>
-    <label for="inputName">メールアドレス</label>
+    <label for="inputName">メールアドレス</label><br>
     <%= f.email_field :email, id:"inputName", placeholder:"メールアドレス"%>
   </div>
   <div>
-  <label for="inputName">ユーザーネーム</label>
+  <label for="inputName">ユーザーネーム</label><br>
     <%= f.text_field :pen_name, id:"inputName", placeholder:"ハンドルネーム"%>
   </div>
   <div>
-  <label for="inputImage">ペット画像</label>
+  <label for="inputImage">ペット画像</label><br>
     <%= f.file_field :profile_image, placeholder: "ペット画像", accept: "image/*" %>
   </div>
   <div>
-  <label for="inputName">ペットネーム</label>
+  <label for="inputName">ペットネーム</label><br>
     <%= f.text_field :pet_name, id:"inputName", placeholder:"ペットネーム"%>
   </div>
   <div>
-  <label for="inputName">ペット紹介</label>
+  <label for="inputName">ペット紹介</label><br>
     <%= f.text_area :introduce, id:"inputName", placeholder:"ペット紹介"%>
   </div>
-
-  <%= f.submit "変更を保存", class: "btn btn-success mt-2" %>
   <div>
-  <%= link_to unsubscribe_customers_path, class: "ml-5" do %>
-    <button type="button" class="btn btn-danger">退会する</button>
-  <% end %>
- </div>
+    <%= f.submit "変更を保存", class: "btn btn-success mt-2 mb-3 mr-5" %><%= link_to "退会する",unsubscribe_customers_path, class: "btn btn-danger mb-2" %>
+  </div>
 
 <% end %>
 </div>
