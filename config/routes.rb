@@ -21,6 +21,10 @@ namespace :admin do
       resource :favorites, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
     end
+    resources :questions do
+      resource :question_favorites, only: [:create, :destroy]
+      resources :question_comments, only: [:create, :destroy]
+    end
   end
 
 
@@ -53,8 +57,10 @@ scope module: :public do
   get "search_post_image" => "post_images#search_post_image"
   get "search_tag"=>"post_images#search_tag"
   resources :genres, only: [:show, :index]
-  resources :groups, only: [:new, :index, :show, :create, :edit, :update] do
+  resources :groups, only: [:new, :index, :show, :create, :edit, :update,:destroy] do
     resource :group_members, only: [:create, :destroy]
+    resources :event_notices, only: [:new, :create]
+    get "event_notices" => "event_notices#sent"
   end
   resources :contacts, only: [:new, :create]
   resources :chats, only: [:show, :create, :destroy]

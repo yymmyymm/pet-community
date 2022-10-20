@@ -35,14 +35,9 @@
       <th><%= f.label :"退会ステータス" %></th>
     <td><%= f.radio_button :is_deleted, false, checked: true %>有効<%= f.radio_button :is_deleted, true%>退会</td>
     </tr>
-    <tr><%= form_with model: @post_image, url: admin_customer_path(@customer.id), method: :patch do |f| %>
-      <th><%= f.label :"投稿表示" %></th>
-    <td><%= f.radio_button :is_deleted_post, false, checked: true %>表示<%= f.radio_button :is_deleted_post, true%>非表示</td>
-    </tr>
     <div class="actions mt-3">
     <%= f.submit "変更を保存", class: "btn btn-success mt-2" %>
     </div>
-    <% end %>
     <% end %>
 
 

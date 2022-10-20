@@ -15,7 +15,7 @@
 
       <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #ffa07a;">
         <div class="container">
-          <a class="navbar-brand" href="/"><%= image_tag('logo-white.png') %></a>
+          <a class="navbar-brand" href="/"><%= image_tag('dai.png') %></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -94,14 +94,10 @@
     <main>
     <%= yield %>
     </main>
-    <footer class="bg-dark text-white pt-5 pb-4">
+    <footer>
       <div class="container">
-        <div class="row　no-gutters">
-          <div class="col-md-4">
-            <p>ウチのさいかわペットを自慢できるSNS</p>
-            <%= image_tag('logo-white.png') %>
-          </div>
-
+        <div class="row justify-content-center align-items-center mb-5">
+            <a href="/"><%= image_tag('dai.png') %>
         </div>
       </div>
     </footer>

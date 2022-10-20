@@ -10,7 +10,7 @@ class Public::PostCommentsController < ApplicationController
 
   def destroy
     PostComment.find(params[:id]).destroy
-    redirect_to post_image_path(params[:post_image_id])
+    redirect_to admin_post_image_path(params[:post_image_id])
   end
 
   private

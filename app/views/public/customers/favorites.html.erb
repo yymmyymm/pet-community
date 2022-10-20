@@ -10,7 +10,11 @@
         </div>
           <%= post_image.caption.truncate(12) %>
         <div style="background-color: #ffe4c4">
-        <%= post_image.customer.pen_name %> さんちの<br>
+        <% if post_image.customer.is_deleted == false %>
+        <%= post_image.customer.pen_name %>さんちの
+        <% else %>
+        退会済みユーザー
+        <% end %><br>
         <%= image_tag post_image.customer.get_profile_image(30,30),class:"rounded-circle" %>
         <span class="pet_title">
           <%= post_image.customer.pet_name %>

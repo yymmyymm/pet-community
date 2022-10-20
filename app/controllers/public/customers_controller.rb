@@ -4,6 +4,7 @@ class Public::CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
     @post_images = @customer.post_images.page(params[:page]).order(created_at: :desc)
+    @questions = @customer.questions.page(params[:page]).order(created_at: :desc)
   end
 
   def index

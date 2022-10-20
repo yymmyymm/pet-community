@@ -1,0 +1,35 @@
+<h4 class="mx-4 mb-4">投稿相談</h4>
+  <div class='container'>
+    <div class="row justify-content-center align-items-center ml-5 mt-2">
+      <div class="col-auto">
+        <div class="photo img-thumbnail"style="background-color: #fffafa;">
+          投稿ID:<%= @question.id %><br>
+          <%= @question.created_at.strftime('%Y/%m/%d') %><br>
+          <%= image_tag @question.get_q_image(250,250)%><br>
+          タイトル：<%= @question.title %><br>
+          説明：<%= @question.caption %><br>
+          <div class="p-2 text-right">
+          <%= link_to "投稿を削除する", admin_question_path(@question), method: :delete, class:"btn btn-danger " %>
+          </div>
+        </div>
+        </div>
+
+            <div class="back-postimage m-1">
+          <% @question.question_comments.each do |question_comment| %>
+            <div class="col-auto m-3">
+            <%= image_tag question_comment.customer.get_profile_image(100,100),class:"rounded-circle" %>
+              <%= question_comment.customer.pen_name %>&nbsp;さん
+              <%= question_comment.created_at.strftime('%Y/%m/%d') %>
+              <div class="comment m-1">
+                <p><%= question_comment.comment %></p>
+              </div>
+              <div class="p-2 text-right">
+                <%= link_to "削除", admin_question_question_comment_path(question_comment.question, question_comment), method: :delete, class:"btn btn-danger " %>
+              </div>
+            </div>
+          <% end %>
+          </div>
+           </div>
+            </div>
+
+

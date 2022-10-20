@@ -13,9 +13,7 @@
           タイトル：<%= @post_image.title %><br>
           説明：<%= @post_image.caption %><br>
           <div class="p-2 text-right">
-            <% if admin_signed_in? %>
-              <%= link_to "投稿を削除する", post_image_path(@post_image), method: :delete, class:"btn btn-danger " %>
-            <% end %>
+            <%= link_to "投稿を削除する", admin_post_image_path(@post_image), method: :delete, class:"btn btn-danger " %>
           </div>
         </div>
         </div>
@@ -29,9 +27,9 @@
                 <p><%= post_comment.comment %></p>
               </div>
               <div class="p-2 text-right">
-                <% if admin_signed_in? %>
+
                   <%= link_to "コメントを削除", post_image_post_comment_path(post_comment.post_image, post_comment), method: :delete, class:"btn btn-danger " %>
-                <% end %>
+
               </div>
             </div>
           <% end %>

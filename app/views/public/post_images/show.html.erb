@@ -24,9 +24,12 @@
       <%= @post_image.title %>
     </div>
       <%= @post_image.caption %>
-    <%= link_to customer_path(@post_image.customer),class:"nav-link text-dark" do %>
     <div style="background-color: #ffe4c4">
-      <%= @post_image.customer.pen_name %> さんちの<br>
+      <% if @post_image.customer.is_deleted == false %>
+        <%= @post_image.customer.pen_name %>さんちの
+        <% else %>
+        退会済みユーザー
+        <% end %><br>
       <%= image_tag @post_image.customer.get_profile_image(100,100),class:"rounded-circle" %>
       <span class="pet_title">
         <%= @post_image.customer.pet_name %>
@@ -39,9 +42,11 @@
           <% if customer_signed_in? %>
           <%= render "public/favorites/btn", post_image: @post_image %>
           <% end %>
-          <% end %>
       </div>
       <div class="p-2 text-right">
+        <% if @post_image.customer.is_deleted == false %>
+          <%= link_to "会員詳細ページ" ,customer_path(@post_image.customer),class:"btn btn-secondary" %>
+         <% end %>
         <% if @post_image.customer == current_customer %>
           <%= link_to "投稿を削除する", post_image_path(@post_image), method: :delete, class:"btn btn-danger " %>
         <% end %>
@@ -51,19 +56,25 @@
  </div>
  </div>
 
+<% if @post_image.customer.is_deleted == false %>
  <div class="row justify-content-center align-items-center pt-3">
   <%= form_with model: [@post_image, @post_comment] do |f| %>
     <%= f.text_area :comment,:size=>"50x3", placeholder: "コメントはこちら" %>
     <%= f.submit "送信する" %>
   <% end %>
   </div>
+  <% end %>
 
   <div class="row justify-content-center align-items-center">
     <div class="back-postimage shadow m-1">
       <% @post_image.post_comments.each do |post_comment| %>
     <div class="col-auto m-3">
       <%= image_tag post_comment.customer.get_profile_image(100,100),class:"rounded-circle"  %>
-      <%= post_comment.customer.pen_name %>&nbsp;さん
+      <% if post_comment.customer.is_deleted == false %>
+        <%= post_comment.customer.pen_name %>さんちの
+        <% else %>
+        退会済みユーザー
+        <% end %>
       <%= post_comment.created_at.strftime('%Y/%m/%d') %>
     <div class="comment m-1">
       <p><%= post_comment.comment %></p>

@@ -23,7 +23,9 @@
           </td>
           <td>
             <% if @group.is_owned_by?(current_customer) %>
-              <%= link_to 'Edit', edit_group_path(@group), class: "btn btn-sm btn-success" %>
+              <%= link_to '編集', edit_group_path(@group), class: "btn btn-sm btn-success mt-1" %>
+              <%= link_to '削除', group_path(@group), method: :delete, class: "btn btn-sm btn-danger mt-1" %>
+              <%= link_to 'イベント告知', new_group_event_notice_path(@group), class: "btn btn-sm btn-info mt-1" %>
             <% elsif @group.includesUser?(current_customer)%>
               <%= link_to 'Leave this group', group_group_members_path(@group), method: :delete, class: "btn btn-sm btn-danger" %>
             <% else %>

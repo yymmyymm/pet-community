@@ -21,6 +21,7 @@ class Public::QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
+    @questions = Question.page(params[:page]).order(created_at: :desc)
     @question_comment = QuestionComment.new
   end
 

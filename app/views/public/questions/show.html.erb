@@ -15,7 +15,11 @@
   <div class="row justify-content-left align-items-center mx-5">
     <div class="col-6">
     <%= image_tag @question.customer.get_profile_image(100,100),class:"rounded-circle"%><br>
-    <%= @question.customer.pen_name %>&nbsp;さん
+    <% if @question.customer.is_deleted == false %>
+        <%= @question.customer.pen_name %>さんちの
+        <% else %>
+        退会済みユーザー
+        <% end %><br>
     <%= @question.created_at.strftime('%Y/%m/%d') %>
    </div>
    <div class="col-2">
@@ -29,19 +33,25 @@
   </div>
   </div>
 
+<% if @question.customer.is_deleted == false %>
   <div class="row justify-content-center align-items-center pt-3">
   <%= form_with model: [@question, @question_comment] do |f| %>
     <%= f.text_area :comment,:size=>"50x3", placeholder: "回答をここに" %>
     <%= f.submit "送信する" %>
   <% end %>
 </div>
+<% end %>
 
  <div class="row justify-content-center align-items-center">
     <div class="back-postimage shadow m-1">
     <% @question.question_comments.each do |question_comment| %>
     <div class="col-auto m-3">
     <%= image_tag question_comment.customer.get_profile_image(100,100),class:"rounded-circle" %>
-    <%= question_comment.customer.pen_name %>&nbsp;さん
+    <% if question_comment.customer.is_deleted == false %>
+        <%= question_comment.customer.pen_name %>さんちの
+        <% else %>
+        退会済みユーザー
+        <% end %>
     <%= question_comment.created_at.strftime('%Y/%m/%d') %>
     <div class="comment m-1">
     <%= question_comment.comment %>
@@ -53,6 +63,5 @@
      </div>
      </div>
   <% end %>
-</div>
 </div>
 </div>

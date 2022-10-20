@@ -15,7 +15,11 @@
         </div>
           <%= post_image.caption.truncate(15) %>
         <div style="background-color: #ffe4c4">
-          <%= post_image.customer.pen_name %> さんちの<br>
+        <% if post_image.customer.is_deleted == false %>
+        <%= post_image.customer.pen_name %>さんちの
+        <% else %>
+        退会済みユーザー
+        <% end %><br>
           <%= image_tag post_image.customer.get_profile_image(30,30),class:"rounded-circle" %>
         <span class="pet_title">
           <%= post_image.customer.pet_name %>
@@ -49,7 +53,11 @@
         </div>
           <%= post_image.caption.truncate(12) %>
         <div style="background-color: #ffe4c4">
-        <%= post_image.customer.pen_name %> さんちの<br>
+        <% if post_image.customer.is_deleted == false %>
+        <%= post_image.customer.pen_name %>さんちの
+        <% else %>
+        退会済みユーザー
+        <% end %><br>
         <%= image_tag post_image.customer.get_profile_image(30,30),class:"rounded-circle" %>
         <span class="pet_title">
           <%= post_image.customer.pet_name %>
@@ -88,8 +96,12 @@
   <i class="fas fa-question"></i><i class="fas fa-comment"></i>&nbsp;<span class="pet_title"><%= question.title %>
   </span><br>
   &nbsp;<%= question.caption.truncate(50) %><br>
-  <%= image_tag question.customer.get_profile_image(50,50),class:"rounded-circle" %>&nbsp;<%= question.customer.pen_name %>&nbsp;さん<br>
-  <%= question.created_at.strftime('%Y/%m/%d') %>
+  <%= image_tag question.customer.get_profile_image(50,50),class:"rounded-circle" %>
+  <% if question.customer.is_deleted == false %>
+  <%= question.customer.pen_name %>さんちの
+  <% else %>
+  退会済みユーザー
+  <% end %><br>
   <i class="fas fa-laugh"></i><%= question.question_comments.count %>
   <i class="fas fa-star"></i><%= question.question_favorites.count %>
   <% end %>

@@ -12,12 +12,19 @@
   <% customers.each do |customer| %>
   <tbody>
     <tr>
-      <td><%= customer.pen_name %></td>
+      <% if customer.is_deleted == false %>
+        <td><%= customer.pen_name %></td>
+        <% else %>
+        <td>退会済み<br>
+        ユーザー</td>
+        <% end %>
       <td><%= image_tag customer.get_profile_image(100,100)%></td>
       <td><%= customer.pet_name %></td>
       <td><%= customer.followers.count %></td>
       <td><%= customer.favorites.count %></td>
+      <% if customer.is_deleted == false %>
       <td><%= link_to "show", customer, class: "customer_#{customer.id}" %></td>
+      <% end %>
     </tr>
   </tbody>
   <% end %>

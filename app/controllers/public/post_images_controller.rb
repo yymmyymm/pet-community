@@ -27,7 +27,7 @@ class Public::PostImagesController < ApplicationController
 
   def show
     @post_image = PostImage.find(params[:id])
-  
+
     unless ViewCount.find_by(customer_id: current_customer.id, post_image_id: @post_image.id)
       current_customer.view_counts.create(post_image_id: @post_image.id)
     end

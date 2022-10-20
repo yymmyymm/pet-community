@@ -5,7 +5,7 @@ class Public::SearchesController < ApplicationController
     @model = params[:model]
     @content = params[:content]
     if @model == "customer"
-      @records = Customer.search_for(@content).page(params[:page])
+      @records = Customer.where(is_deleted: false).search_for(@content).page(params[:page])
     elsif @model == "post_image"
       @records = PostImage.search_for(@content).page(params[:page])
     else

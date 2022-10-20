@@ -6,7 +6,12 @@
   <i class="fas fa-question"></i><i class="fas fa-comment"></i>&nbsp;<span class="pet_title"><%= question.title%>
   </span><br>
   &nbsp;<%= question.caption.truncate(50) %><br>
-  <%= image_tag question.customer.get_profile_image(50,50),class:"rounded-circle" %>&nbsp;<%= question.customer.pen_name %>&nbsp;さん<br>
+  <%= image_tag question.customer.get_profile_image(50,50),class:"rounded-circle" %>
+  <% if question.customer.is_deleted == false %>
+  <%= question.customer.pen_name %>さんちの
+        <% else %>
+        退会済みユーザー
+        <% end %><br>
   <%= question.created_at.strftime('%Y/%m/%d') %>
   <i class="fas fa-laugh"></i><%= question.question_comments.count %>
   <i class="fas fa-star"></i><%= question.question_favorites.count %>

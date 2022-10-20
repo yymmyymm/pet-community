@@ -16,11 +16,11 @@
               <tbody>
                 <tr>
                   <th>
-                    <div class="text-align: left;">
+                    <div class="comment text-align: left;">
                       <font size="2">
                         <%= chat.created_at.strftime('%Y/%m/%d') %>
                       </font><br>
-                        <%= chat.message %><br>
+                        <%= chat.message %>
                       <% if chat.customer == current_customer %>
                         <%= link_to "削除", chat_path(chat), method: :delete, class:"btn btn-danger " %>
                       <% end %>
@@ -32,11 +32,11 @@
                   <tr>
                   <th></th>
                   <th>
-                    <div class="text-align: right;">
+                    <div class="comment text-align: right;">
                       <font size="2">
                         <%= chat.created_at.strftime('%Y/%m/%d') %>
                       </font><br>
-                        <%= chat.message %><br>
+                        <%= chat.message %>
                       <% if chat.customer == current_customer %>
                         <%= link_to "削除", chat_path(chat), method: :delete, class:"btn btn-danger " %>
                       <% end %>

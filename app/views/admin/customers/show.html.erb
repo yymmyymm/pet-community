@@ -50,13 +50,13 @@
     </div>
   </div>
   </div>
-
-<div class="row justify-content-center align-items-center ">
+<h4 class="text-center">投稿一覧</h4>
+<div class="row justify-content-center align-items-center">
 <% @post_images.each do |post_image| %>
   <div class="col-auto img-thumbnail m-1"style="background-color: #fffafa;">
   <%= link_to admin_post_image_path(post_image.id), class: "text-dark nav-link" do %>
   <p>投稿ID:<%= post_image.id %></p>
-  <p><%= post_image.created_at.strftime('%Y/%m/%d') %></p>
+  <p>日付:<%= post_image.created_at.strftime('%Y/%m/%d') %></p>
   <p><%= image_tag post_image.get_image, :size => '200' %></p>
   <p>タイトル：<%= post_image.title.truncate(8) %></p>
   <p>コメント件数：<%= post_image.post_comments.count %></p>
@@ -66,3 +66,23 @@
 </div>
 
 <%= paginate @post_images %>
+
+<h4 class="text-center">相談一覧</h4>
+<div class="row justify-content-center align-items-center ">
+  <div class="col-8">
+<% @questions.each do |question| %>
+  <div class="img-thumbnail m-1"style="background-color: #fffafa;">
+  <%= link_to admin_question_path(question.id), class: "text-dark nav-link" do %>
+  投稿ID:<%= question.id %>
+  日付:<%= question.created_at.strftime('%Y/%m/%d') %><br>
+  <%= image_tag question.get_q_image(100,100)%>
+  タイトル：<%= question.title.truncate(10) %>
+  コメント件数：<%= question.question_comments.count %>
+<% end %>
+</div>
+<% end %>
+</div>
+</div>
+
+<%= paginate @questions %>
+
