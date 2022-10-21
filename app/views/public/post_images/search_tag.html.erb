@@ -24,8 +24,12 @@
           <i class="fas fa-eye"></i><%= post_image.view_counts.count %>&nbsp;
           <i class="fas fa-handshake"></i><%= post_image.customer.followers.count %>&nbsp;
           <i class="fas fa-comments"></i><%= post_image.post_comments.count %>&nbsp;
+          <% if current_customer.name != "guestuser" %>
           <% if customer_signed_in? %>
           <%= render "public/favorites/btn", post_image: post_image %>
+          <% end %>
+          <% else %>
+          <i class="fas fa-heart"></i><%= post_image.favorites.count %>
           <% end %>
         </div>
         </div>

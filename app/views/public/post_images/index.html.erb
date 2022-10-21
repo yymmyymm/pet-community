@@ -1,4 +1,7 @@
-<h4 class="mx-4 mb-4">投稿一覧<span><%= link_to "画像投稿フォーム",new_post_image_path, class: 'btn btn-success ml-4' %>
+<h4 class="mx-4 mb-4">投稿一覧<span>
+  <% if current_customer.name != "guestuser" %>
+    <%= link_to "画像投稿フォーム",new_post_image_path, class: 'btn btn-success ml-4' %>
+  <% end %>
 </h4>
 
     <div class="row justify-content-center align-items-center ">
@@ -26,8 +29,12 @@
           <i class="fas fa-eye"></i><%= post_image.view_counts.count %>&nbsp;
           <i class="fas fa-handshake"></i><%= post_image.customer.followers.count %>&nbsp;
           <i class="fas fa-comments"></i><%= post_image.post_comments.count %>&nbsp;
-          <% if customer_signed_in? %>
+          <% if current_customer.name != "guestuser" %>
+            <% if customer_signed_in? %>
           <%= render "public/favorites/btn", post_image: post_image %>
+          <% end %>
+          <% else %>
+          <i class="fas fa-heart"></i><%= post_image.favorites.count %>
           <% end %>
         </div>
         </div>

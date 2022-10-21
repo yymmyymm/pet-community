@@ -52,4 +52,15 @@ class Customer < ApplicationRecord
      Customer.where(['pen_name LIKE(?) OR pet_name LIKE(?) OR introduce LIKE(?)',"%#{content}%","%#{content}%" ,"%#{content}%"])
   end
 
+  def self.guest
+    find_or_create_by!(name: 'guestuser',email: 'guest@example.com',name_kana: 'guestuser_kana',pen_name: 'pen_guestuser') do |customer|
+      customer.name = 'guestuser'
+      customer.email = 'guest@example.com'
+      customer.name_kana = 'guestuser_kana'
+      customer.pen_name = 'pen_guestuser'
+      customer.password = SecureRandom.urlsafe_base64
+    end
+  end
+
+
 end

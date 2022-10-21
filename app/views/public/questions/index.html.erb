@@ -1,4 +1,7 @@
-<h4 class="mx-4 mb-4">相談一覧<span><%= link_to '相談投稿フォーム', new_question_path, class: 'btn btn-success ml-4' %></h4>
+<h4 class="mx-4 mb-4">相談一覧<span>
+  <% if current_customer.name != "guestuser" %>
+  <%= link_to '相談投稿フォーム', new_question_path, class: 'btn btn-success ml-4' %>
+  <% end %></h4>
 <div class="row justify-content-center align-items-center">
 <div class="col-8">
 <% @questions.each do |question| %>

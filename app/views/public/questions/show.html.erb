@@ -23,16 +23,20 @@
     <%= @question.created_at.strftime('%Y/%m/%d') %>
    </div>
    <div class="col-2">
+   <% if current_customer.name != "guestuser" %>
    <%= render "public/question_favorites/btn", question: @question %>
+   <% end %>
    </div>
    <div class="col-3">
    <% if @question.customer == current_customer %>
-    <%= link_to "質問を削除", question_path(@question), method: :delete, class:"btn btn-danger"%>
-  <% end %>
+     <%= link_to "質問を削除", question_path(@question), method: :delete, class:"btn btn-danger"%>
+     <% else %>
+     <i class="fas fa-star" ></i><%= @question.question_favorites.count %>
+   <% end %>
   </div>
   </div>
   </div>
-
+<% if current_customer.name != "guestuser" %>
 <% if @question.customer.is_deleted == false %>
   <div class="row justify-content-center align-items-center pt-3">
   <%= form_with model: [@question, @question_comment] do |f| %>
@@ -41,7 +45,7 @@
   <% end %>
 </div>
 <% end %>
-
+<% end %>
  <div class="row justify-content-center align-items-center">
     <div class="back-postimage shadow m-1">
     <% @question.question_comments.each do |question_comment| %>

@@ -31,9 +31,11 @@
               <%=link_to"投稿お気に入り一覧",favorites_customer_path(@customer),class:"btn btn-primary text-white" %>
               <%=link_to"相談お気に入り一覧",question_favorites_customer_path(@customer),class:"btn btn-info text-white" %>
             </div>
+            <% if current_customer.name != "guestuser" %>
             <div class="text-right mt-2">
               <%= render "public/relationships/btn", customer: @customer %>
             </div>
+            <% end %>
             <div class="text-right mt-2 mb-2">
               <% if @customer.id == current_customer.id %>
                 <%= link_to "プロフィール編集",edit_customer_path(current_customer.id) %>

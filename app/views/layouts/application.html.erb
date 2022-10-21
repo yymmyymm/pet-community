@@ -69,6 +69,11 @@
                 <%= link_to new_customer_session_path, class: 'nav-link text-dark' do %>
                 ログイン
                 <% end %>
+              <li class="text-right">
+                <%= link_to customers_guest_sign_in_path,class: 'nav-link text-dark',method: :post do %>
+                ゲストログイン<br>
+                （閲覧用）
+                <% end %>
               </li>
               <% end %>
             </ul>
@@ -77,12 +82,15 @@
       </nav>
         <div class="seach">
           <div class="nav-item">
-          <% if customer_signed_in? %>
-          ようこそ、<span>
+
+           <% if customer_signed_in?  %>
+            <% if current_customer.name != "guestuser" %>
+           ようこそ、<span>
             <%= link_to customer_path(current_customer.id), class: 'btn btn-outline-danger btn-sm' do %>
                 <%= current_customer.pen_name %><i class="fas fa-paw"></i>
             <% end %>
           </span>さん
+          <% end %>
           <% end %>
           </div>
         <%= render 'public/searches/form' %>

@@ -32,6 +32,9 @@ namespace :admin do
 scope module: :public do
   root to: 'homes#top'
   get '/about'=>'homes#about'
+  devise_scope :customer do
+    post 'customers/guest_sign_in', to: 'customers/sessions#guest_sign_in'
+  end
   resources :post_images do
     resource :favorites, only: [:create, :destroy]
     resources :post_comments, only: [:create, :destroy]
@@ -52,20 +55,24 @@ scope module: :public do
     resource :relationships, only: [:create, :destroy]
       get "followings" => "relationships#followings", as: "followings"
       get "followers" => "relationships#followers", as: "followers"
+     end
+     resources :contacts, only: [:new, :create]
+     resources :chats, only: [:show, :create, :destroy]
+     resources :rooms, only: [:create, :index, :show]
+     get 'search', to: 'searches#search'
+     get "search_post_image" => "post_images#search_post_image"
+     get "search_tag"=>"post_images#search_tag"
+     resources :genres, only: [:show, :index]
   end
-  get 'search', to: 'searches#search'
-  get "search_post_image" => "post_images#search_post_image"
-  get "search_tag"=>"post_images#search_tag"
-  resources :genres, only: [:show, :index]
   resources :groups, only: [:new, :index, :show, :create, :edit, :update,:destroy] do
     resource :group_members, only: [:create, :destroy]
     resources :event_notices, only: [:new, :create]
     get "event_notices" => "event_notices#sent"
   end
-  resources :contacts, only: [:new, :create]
-  resources :chats, only: [:show, :create, :destroy]
-  resources :rooms, only: [:create, :index, :show]
-end
+
+
+
+
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
