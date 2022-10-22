@@ -47,7 +47,7 @@ display: flex;
 }
 
 .back-postimage{
-  background-image: url('22810527.jpg');
+  background-image: url("22810527.jpg");
   border-radius: 10px 10px;
 }
 
