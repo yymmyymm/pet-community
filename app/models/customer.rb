@@ -27,6 +27,7 @@ class Customer < ApplicationRecord
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :name_kana, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :pen_name, length: { minimum: 2, maximum: 20 }, uniqueness: true
+  validates :introduce, length: { maximum: 200 }
 
   def get_profile_image(width, height)
     unless profile_image.attached?

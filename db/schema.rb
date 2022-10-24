@@ -136,7 +136,6 @@ ActiveRecord::Schema.define(version: 2022_10_18_022850) do
     t.integer "genre_id"
     t.string "title", null: false
     t.text "caption"
-    t.string "category"
     t.boolean "is_deleted_post", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

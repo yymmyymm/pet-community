@@ -2,14 +2,13 @@
   <div class='container'>
     <div class="row justify-content-center align-items-center">
       <div class="col-auto photo img-thumbnail shadow"style="background-color: #fffafa;">
+        <div>
+          <span class="pet_title"><font size="5"><%= @customer.pet_name %></font></span>&nbsp;ちゃん
+        </div>
         <%= image_tag @customer.get_profile_image(500,500) %>
-          <div>
-            <span class="pet_title"><font size="5"><%= @customer.pet_name %></font></span>&nbsp;ちゃん
-          </div>
       </div>
-
         <div class="col-auto photo img-thumbnail shadow ml-1 mt-1"style="background-color: #fffafa;">
-          <h4 class="mx-4"><%= @customer.pen_name %>&nbsp;さんのプロフィール</h4>
+          <h4 class="mx-4"><%= @customer.pet_name %>&nbsp;ちゃんのプロフィール</h4>
             <div class="comment">
               <p><%= @customer.introduce %></p>
             </div>

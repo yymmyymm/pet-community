@@ -4,7 +4,7 @@ ja:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
       models:
-        user:
+        admin:
           attributes:
             email:
               taken: "は既に使用されています。"
