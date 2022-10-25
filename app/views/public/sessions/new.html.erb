@@ -4,28 +4,22 @@
       <div class="mb-4">
       <h4><strong>ログイン</strong></h4>
      </div>
-
        <div class="row">
         <p style="background-color:#EEEEEE">会員の方はこちらからログイン</p>
        </div>
-
         <%= form_with model: @customer, url: customer_session_path do |f| %>
         <div class="field form-group">
           <%= f.label :"メールアドレス" %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: "sample@example.com" %>
         </div>
-
         <div class="field">
           <%= f.label :"パスワード" %><br />
           <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
         </div>
-
         <div class="actions text-right mt-2">
           <%= f.submit "ログイン", class: "btn btn-primary" %>
         </div>
-
         <% end %>
-
         <div class="row mt-2">
           <h6 style="background-color:#EEEEEE">会員登録がお済みでない方</h6>
         </div>

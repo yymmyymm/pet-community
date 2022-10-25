@@ -12,7 +12,6 @@
 
   <body>
     <header class="sticky-top border-bottom border-secondary border-3 mb-1 border border-warning">
-
       <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #ffa07a;">
         <div class="container">
           <a class="navbar-brand" href="/"><%= image_tag('dai.png') %></a>
@@ -21,7 +20,6 @@
         </button>
        <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-
             <ul class="navbar-nav ml-auto">
               <% if admin_signed_in? %>
                 <li class="text-right">
@@ -82,7 +80,6 @@
       </nav>
         <div class="seach">
           <div class="nav-item">
-
            <% if customer_signed_in?  %>
             <% if current_customer.name != "guestuser" %>
            ようこそ、<span>

@@ -1,40 +1,40 @@
 <h4 class="mx-4 mb-4">質問回答ページ</h4>
   <div class='container photo img-thumbnail'>
     <div class="row justify-content align-items-center ml-5 mt-2">
-  <i class="fas fa-question"></i><i class="fas fa-comment"></i>
-  &nbsp;<span class="pet_title"><font size="4"><%= @question.title %></font></span>
-  </div>
-  <div class="row justify-content-left align-items-center mx-5">
-    <div class="col-6">
-  <%= @question.caption %>
-  </div>
-    <div class="col-4 pr-3">
-  <%= image_tag @question.get_q_image(250,250) %>
+      <i class="fas fa-question"></i><i class="fas fa-comment"></i>
+      &nbsp;<span class="pet_title"><font size="4"><%= @question.title %></font></span>
     </div>
-  </div>
-  <div class="row justify-content-left align-items-center mx-5">
-    <div class="col-6">
-    <%= image_tag @question.customer.get_profile_image(100,100),class:"rounded-circle"%><br>
-    <% if @question.customer.is_deleted == false %>
-        <%= @question.customer.pen_name %>さんちの
+      <div class="row justify-content-left align-items-center mx-5">
+        <div class="col-6">
+          <%= @question.caption %>
+        </div>
+        <div class="col-4 pr-3">
+          <%= image_tag @question.get_q_image(250,250) %>
+        </div>
+      </div>
+      <div class="row justify-content-left align-items-center mx-5">
+        <div class="col-6">
+          <%= image_tag @question.customer.get_profile_image(100,100),class:"rounded-circle"%><br>
+        <% if @question.customer.is_deleted == false %>
+          <%= @question.customer.pen_name %>さんちの
         <% else %>
-        退会済みユーザー
+          退会済みユーザー
         <% end %><br>
-    <%= @question.created_at.strftime('%Y/%m/%d') %>
-   </div>
-   <div class="col-2">
-   <% if current_customer.name != "guestuser" %>
-   <%= render "public/question_favorites/btn", question: @question %>
-   <% end %>
-   </div>
-   <div class="col-3">
-   <% if @question.customer == current_customer %>
-     <%= link_to "質問を削除", question_path(@question), method: :delete, class:"btn btn-danger"%>
-     <% else %>
-     <i class="fas fa-star" ></i><%= @question.question_favorites.count %>
-   <% end %>
-  </div>
-  </div>
+          <%= @question.created_at.strftime('%Y/%m/%d') %>
+        </div>
+        <div class="col-2">
+          <% if current_customer.name != "guestuser" %>
+            <%= render "public/question_favorites/btn", question: @question %>
+          <% end %>
+        </div>
+        <div class="col-3">
+          <% if @question.customer == current_customer %>
+            <%= link_to "質問を削除", question_path(@question), method: :delete, class:"btn btn-danger"%>
+          <% else %>
+            <i class="fas fa-star" ></i><%= @question.question_favorites.count %>
+          <% end %>
+        </div>
+      </div>
   </div>
 <% if current_customer.name != "guestuser" %>
 <% if @question.customer.is_deleted == false %>
@@ -43,7 +43,7 @@
     <%= f.text_area :comment,:size=>"50x3", placeholder: "回答をここに" %>
     <%= f.submit "送信する" %>
   <% end %>
-</div>
+  </div>
 <% end %>
 <% end %>
  <div class="row justify-content-center align-items-center">
@@ -51,11 +51,11 @@
     <% @question.question_comments.each do |question_comment| %>
     <div class="col-auto m-3">
     <%= image_tag question_comment.customer.get_profile_image(100,100),class:"rounded-circle" %>
-    <% if question_comment.customer.is_deleted == false %>
+      <% if question_comment.customer.is_deleted == false %>
         <%= question_comment.customer.pen_name %>さんちの
-        <% else %>
+      <% else %>
         退会済みユーザー
-        <% end %>
+      <% end %>
     <%= question_comment.created_at.strftime('%Y/%m/%d') %>
     <div class="comment m-1">
     <%= question_comment.comment %>
@@ -67,5 +67,5 @@
      </div>
      </div>
   <% end %>
-</div>
+  </div>
 </div>

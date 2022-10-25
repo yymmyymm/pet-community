@@ -29,6 +29,7 @@ class PostImage < ApplicationRecord
     PostImage.where(['title LIKE(?) OR caption LIKE(?)',"%#{content}%","%#{content}%"])
   end
 
+  #複数タグ関連
   def save_tag(sent_tags)
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
     old_tags = current_tags - sent_tags

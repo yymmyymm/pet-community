@@ -2,6 +2,6 @@
   <div class="ml-4 mb-3">
     <%= form_with model: @post_image do |f| %>
       <%= f.text_field :name,value: @tag_list %>
-      <%= f.submit '変更' %>
+      <%= f.submit '変更',class:"btn btn-success mt-2"%>
     <% end %>
   </div>

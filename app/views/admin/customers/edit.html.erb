@@ -2,47 +2,45 @@
   <div class="row">
     <div class="col3-md offset-1 mt-2 mb-1">
       <h4><%= "#{@customer.name}" %>さんの会員情報編集</h4>
-      </div>
+    </div>
   </div>
 
-  <div class="row justify-content-center">
+    <div class="row justify-content-center">
     <div class="col-8">
       <%= form_with model: @customer, url: admin_customer_path(@customer.id), method: :patch do |f| %>
     </div>
     <div class="col-auto mt-2">
-    <table class="table">
-  <tr>
-  <th>会員ID</th>
-  <td><%= @customer.id %></td>
-  </tr>
-    <tr>
-    <th><%= f.label :"名前" %></th>
-    <td><%= f.text_field :name %></td>
-    </tr>
-     <tr>
-    <th><%= f.label :"ユーザーネーム" %></th>
-    <td><%= f.text_field :pen_name %></td>
-    </tr>
-     <tr>
-    <th><%= f.label :"ペットネーム" %></th>
-    <td><%= f.text_field :pet_name %></td>
-    </tr>
-     <tr>
-    <th><%= f.label :"メールアドレス" %></th>
-    <td><%= f.text_field :email %></td>
-    </tr>
-     <tr>
-      <th><%= f.label :"退会ステータス" %></th>
-    <td><%= f.radio_button :is_deleted, false, checked: true %>有効<%= f.radio_button :is_deleted, true%>退会</td>
-    </tr>
-    <div class="actions mt-3">
-    <%= f.submit "変更を保存", class: "btn btn-success mt-2" %>
+      <table class="table">
+      <tr>
+        <th>会員ID</th>
+        <td><%= @customer.id %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :"名前" %></th>
+        <td><%= f.text_field :name %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :"ユーザーネーム" %></th>
+        <td><%= f.text_field :pen_name %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :"ペットネーム" %></th>
+        <td><%= f.text_field :pet_name %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :"メールアドレス" %></th>
+        <td><%= f.text_field :email %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :"退会ステータス" %></th>
+        <td><%= f.radio_button :is_deleted, false, checked: true %>有効<%= f.radio_button :is_deleted, true%>退会</td>
+      </tr>
+      <div class="actions mt-3">
+        <%= f.submit "変更を保存", class: "btn btn-success mt-2" %>
+      </div>
+        <% end %>
     </div>
-    <% end %>
-
-
     </div>
-  </div>
-  </table>
+    </table>
 </div>
 

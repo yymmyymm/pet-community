@@ -14,7 +14,6 @@
       <div class="mb-4">
       <h4>相談投稿フォーム</h4>
     </div>
-
       <%= form_with model: @question do |f| %>
         <h5>画像（任意）</h5>
           <%= f.file_field :q_image, accept: "image/*" %>

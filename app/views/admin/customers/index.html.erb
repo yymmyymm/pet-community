@@ -1,9 +1,9 @@
 <div class='container'>
-<div class="row justify-content-center align-items-center m-3">
-<div class="col-auto m-3">
-<h4 class="mx-4 mb-4">会員一覧</h4>
-<table class="table shadow">
-        <thead class="table-active">
+  <div class="row justify-content-center align-items-center m-3">
+    <div class="col-auto m-3">
+      <h4 class="mx-4 mb-4">会員一覧</h4>
+        <table class="table shadow">
+          <thead class="table-active">
           <tr>
             <th>会員ID</th>
             <th>ユーザーネーム</th>
@@ -13,25 +13,25 @@
             <th>退会ステータス</th>
             <th>詳細ページ</th>
           </tr>
-        </thead>
- <% @customers.each do |customer| %>
- <tbody>
-    <tr>
-    <td><%= customer.id %></td>
-    <td><%= customer.name %></td>
-    <td><%= image_tag customer.get_profile_image(100,100)%></td>
-    <td><%= customer.pet_name %></td>
-    <td><%= customer.email %></td>
-    <% if customer.is_deleted == true %>
-      <td class="text-secondary font-weight-bold">退会</td>
-    <% else %>
-      <td class="text-success font-weight-bold">有効</td>
-    <% end %>
-    <td><%= link_to "show", admin_customer_path(customer.id) %></td>
-      </tr>
-  </tbody>
-  <% end %>
-   </table>
-  </div>
-</div>
+          </thead>
+        <% @customers.each do |customer| %>
+          <tbody>
+          <tr>
+            <td><%= customer.id %></td>
+            <td><%= customer.name %></td>
+            <td><%= image_tag customer.get_profile_image(100,100)%></td>
+            <td><%= customer.pet_name %></td>
+            <td><%= customer.email %></td>
+            <% if customer.is_deleted == true %>
+              <td class="text-secondary font-weight-bold">退会</td>
+            <% else %>
+              <td class="text-success font-weight-bold">有効</td>
+            <% end %>
+              <td><%= link_to "show", admin_customer_path(customer.id) %></td>
+          </tr>
+          </tbody>
+        <% end %>
+        </table>
+      </div>
+    </div>
 </div>

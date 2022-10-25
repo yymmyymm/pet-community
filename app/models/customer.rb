@@ -16,9 +16,9 @@ class Customer < ApplicationRecord
   has_many :view_counts, dependent: :destroy
   has_many :group_members, dependent: :destroy
 
+  #フォロー、フォロワー関連
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
-
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
 
@@ -52,7 +52,8 @@ class Customer < ApplicationRecord
   def self.search_for(content)
      Customer.where(['pen_name LIKE(?) OR pet_name LIKE(?) OR introduce LIKE(?)',"%#{content}%","%#{content}%" ,"%#{content}%"])
   end
-
+  
+  #ゲストログイン
   def self.guest
     find_or_create_by!(name: 'guestuser',email: 'guest@example.com',name_kana: 'guestuser_kana',pen_name: 'pen_guestuser') do |customer|
       customer.name = 'guestuser'
