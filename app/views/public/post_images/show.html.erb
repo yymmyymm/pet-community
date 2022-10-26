@@ -26,14 +26,19 @@
       <%= @post_image.caption %>
     <div style="background-color: #ffe4c4">
       <% if @post_image.customer.is_deleted == false %>
-        <%= @post_image.customer.pen_name %>さんちの
+        <%= @post_image.customer.pen_name %>&nbsp;さんちの
         <% else %>
-        退会済みユーザー
+        退会済みユーザー&nbsp;
         <% end %><br>
       <%= image_tag @post_image.customer.get_profile_image(100,100),class:"rounded-circle" %>
-      <span class="pet_title">
-        <%= @post_image.customer.pet_name %>
-      </span> ちゃん<br>
+      <% if @post_image.customer.pet_name != nil %>
+          <span class="pet_title">
+            <%= @post_image.customer.pet_name %>
+          </span> ちゃん<br>
+        <% else %>
+          <span class="pet_title">○○
+          </span>ちゃん<br>
+        <% end %>
       <div class="view">
           <%= @post_image.created_at.strftime('%Y/%m/%d') %>&nbsp;
           <i class="fas fa-eye"></i><%= @post_image.view_counts.count %>&nbsp;
@@ -76,9 +81,9 @@
     <div class="col-auto m-3">
       <%= image_tag post_comment.customer.get_profile_image(100,100),class:"rounded-circle"  %>
       <% if post_comment.customer.is_deleted == false %>
-        <%= post_comment.customer.pen_name %>さんちの
+        <%= post_comment.customer.pen_name %>&nbsp;さん
         <% else %>
-        退会済みユーザー
+        退会済みユーザー&nbsp;
         <% end %>
       <%= post_comment.created_at.strftime('%Y/%m/%d') %>
     <div class="comment m-1">

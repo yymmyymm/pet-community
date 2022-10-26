@@ -11,7 +11,15 @@
         <%= question.customer.pen_name %>さんちの
       <% else %>
         退会済みユーザー
-      <% end %><br>
+      <% end %>
+      <% if question.customer.pet_name != nil %>
+        <span class="pet_title">
+          <%= question.customer.pet_name %>
+        </span>ちゃん<br>
+      <% else %>
+         <span class="pet_title">○○
+         </span>ちゃん<br>
+      <% end %>
       <%= question.created_at.strftime('%Y/%m/%d') %>
         <i class="fas fa-laugh"></i><%= question.question_comments.count %>
         <i class="fas fa-star"></i><%= question.question_favorites.count %>

@@ -19,19 +19,27 @@
           <%= @question.customer.pen_name %>さんちの
         <% else %>
           退会済みユーザー
-        <% end %><br>
+        <% end %>
+        <% if @question.customer.pet_name != nil %>
+          <span class="pet_title">
+            <%= @question.customer.pet_name %>
+          </span>ちゃん<br>
+        <% else %>
+          <span class="pet_title">○○
+          </span>ちゃん<br>
+        <% end %>
           <%= @question.created_at.strftime('%Y/%m/%d') %>
         </div>
         <div class="col-2">
           <% if current_customer.name != "guestuser" %>
             <%= render "public/question_favorites/btn", question: @question %>
+          <% else %>
+            <i class="fas fa-star" ></i><%= @question.question_favorites.count %>
           <% end %>
         </div>
         <div class="col-3">
           <% if @question.customer == current_customer %>
             <%= link_to "質問を削除", question_path(@question), method: :delete, class:"btn btn-danger"%>
-          <% else %>
-            <i class="fas fa-star" ></i><%= @question.question_favorites.count %>
           <% end %>
         </div>
       </div>
@@ -52,7 +60,7 @@
     <div class="col-auto m-3">
     <%= image_tag question_comment.customer.get_profile_image(100,100),class:"rounded-circle" %>
       <% if question_comment.customer.is_deleted == false %>
-        <%= question_comment.customer.pen_name %>さんちの
+        <%= question_comment.customer.pen_name %>さん
       <% else %>
         退会済みユーザー
       <% end %>
