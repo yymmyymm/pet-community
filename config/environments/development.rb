@@ -75,8 +75,6 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
   config.hosts << "482d799460274b63ac89d57ccade6227.vfs.cloud9.ap-northeast-1.amazonaws.com"
 
-
-
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
       address:              'smtp.gmail.com',
