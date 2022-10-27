@@ -1,7 +1,7 @@
 <h4 class="ml-4 mb-1">タグ編集</h4><p class="ml-4 mb-4">、で区切ると複数タグ登録できます</p>
   <div class="ml-4 mb-3">
     <%= form_with model: @post_image do |f| %>
-      <%= f.text_field :name,value: @tag_list %>
+      <%= f.text_field :name,:size=>"40x1",value: @tag_list %>
       <%= f.submit '変更',class:"btn btn-success mt-2"%>
     <% end %>
   </div>
