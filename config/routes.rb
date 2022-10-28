@@ -63,12 +63,14 @@ scope module: :public do
      get "search_post_image" => "post_images#search_post_image"
      get "search_tag"=>"post_images#search_tag"
      resources :genres, only: [:show, :index]
-  end
   resources :groups, only: [:new, :index, :show, :create, :edit, :update,:destroy] do
     resource :group_members, only: [:create, :destroy]
     resources :event_notices, only: [:new, :create]
     get "event_notices" => "event_notices#sent"
   end
+
+  end
+
 
 
 
