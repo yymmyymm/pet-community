@@ -2,7 +2,7 @@
     <div class="row">
       <div class="col-5 px-0 mx-auto">
         <div class="mb-4">
-        <h4>新規投稿フォーム</h4>
+        <h4>お問い合わせ</h4>
       </div>
 
       <div class="correct-msg-box">
@@ -19,12 +19,12 @@
       <div class="correct-msg-main">
         <div class="contact-form">
             <div class="correct-text-field">
-              <%= f.label "お名前" %>
-              <%= f.text_field :name, placeholder: "お名前", class: "input-form" %>
+              <%= f.label "お名前" %><br>
+              <%= f.text_field :name, :size=>"30x1",placeholder: "お名前", class: "input-form" %>
             </div>
             <div class="correct-text-field">
-              <%= f.label "お問合せ内容" %>
-              <%= f.text_area :content, placeholder: "お問合せ内容を入力してください", class: "input-form" %>
+              <%= f.label "お問合せ内容" %><br>
+              <%= f.text_area :content,:size=>"40x3", placeholder: "お問合せ内容を入力してください", class: "input-form" %>
             </div>
             <div class="send-btn-contents">
               <div class="register-btn text-right mb-5">
