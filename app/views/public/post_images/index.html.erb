@@ -11,9 +11,9 @@
         <%= link_to post_image_path(post_image), class: "text-dark nav-link" do %>
         <%= image_tag post_image.image, :size => '250', class: "border" %><br>
         <div class="post_title">
-          <%= post_image.title.truncate(10) %>
+          <%= post_image.title.truncate(13) %>
         </div>
-          <%= post_image.caption.truncate(12) %>
+          <%= post_image.caption.truncate(17) %>
         <div style="background-color: #ffe4c4">
         <% if post_image.customer.is_deleted == false %>
         <%= post_image.customer.pen_name %>さんちの
