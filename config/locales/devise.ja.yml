@@ -1,9 +1,20 @@
 ja:
   activerecord:
-    errors:
+    attributes:
+      errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
       models:
+        customer:
+          attributes:
+            current_password: "現在のパスワード"
+            name: "名前"
+            name_kana: "フリガナ"
+            pen_name: "ユーザーネーム"
+            email: "メールアドレス"
+            password: "パスワード"
+            password_confirmation: "確認用パスワード"
+            remember_me: "次回から自動的にログイン"
         admin:
           attributes:
             email:
@@ -12,6 +23,7 @@ ja:
               too_short: "は%{count}文字以上に設定して下さい。"
               too_long: "は%{count}文字以下に設定して下さい。"
               invalid: "は有効でありません。"
+              blank: "入力してください。"
             password:
               taken: "は既に使用されています。"
               blank: "が入力されていません。"
@@ -19,16 +31,22 @@ ja:
               too_long: "は%{count}文字以下に設定して下さい。"
               invalid: "は有効でありません。"
               confirmation: "が内容とあっていません。"
+              blank: "入力してください。"
     attributes:
-      user:
+      customer:
         current_password: "現在のパスワード"
         name: "名前"
+        name_kana: "フリガナ"
+        pen_name: "ユーザーネーム"
         email: "メールアドレス"
         password: "パスワード"
         password_confirmation: "確認用パスワード"
         remember_me: "次回から自動的にログイン"
     models:
       user: "ユーザー"
+      customer: "ユーザー"
+      post_image: "投稿"
+      question: "相談"
   devise:
     confirmations:
       new:

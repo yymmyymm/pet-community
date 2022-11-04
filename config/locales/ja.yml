@@ -1,0 +1,29 @@
+ja:
+  activerecord:
+    errors:
+      models:
+        customer:
+          attributes:
+            email:
+              blank: '入力してください。'
+            password:
+              blank: '入力してください。'
+            name:
+              blank: '入力してください。'
+              too_short: "は%{count}文字以上に設定して下さい。"
+            name_kana:
+              blank: '入力してください。'
+              too_short: "は%{count}文字以上に設定して下さい。"
+            pen_name:
+              blank: '入力してください。'
+              too_short: "は%{count}文字以上に設定して下さい。"
+    models:
+      customer: 'ユーザー'
+      post_image: '投稿'
+    attributes:
+      customer:
+        email:  'メールアドレス'
+        password: 'パスワード'
+        name: 'お名前'
+        name_kana: "フリガナ"
+        pen_name: "ユーザーネーム"
