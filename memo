@@ -1,0 +1,73 @@
+・改善点/今後のチャレンジ
+# 改善点
+- ユーザーの新規登録時のバリデーションによるエラーメッセージが「ja.activerecord.errors.models.customer.attributes.email.blank」のように表示されます。
+　-> blankのメッセージを日本語に変換できないエラーです、ja.ymlに該当する日本語を登録しましょう。（各モデルのカラムも日本語登録しましょう。）
+　例：ja.yml 
+ja:
+  activerecord:
+    errors:
+      models:
+        customer:
+          attributes:
+            email:
+              blank: '入力してください。'
+            password:
+              blank: '入力してください。'
+.....省略.....
+    models:
+      customer: 'ユーザー'
+      post: '投稿'
+    attributes:
+      customer: 
+        email:  'メールアドレス'
+        password: 'パスワード'
+        name: 'お名前'
+
+- 「フォロー／フォロワー」一覧は、誰のフォロー一覧・フォロワー一覧かがわかるように「＊＊さんがフォローしているユーザー一覧」のようにタイトルを表示しましょう。
+- 「いいね一覧」誰のいいね一覧かがわかるように「＊＊さんのいいね一覧」のようにタイトルを表示しましょう。
+
+- 投稿の新規投稿フォームは文字数制限がある場合は、制限が分かるようにフォームに明示しましょう。
+
+- 投稿は編集(edit/update)に対応しましょう、誤字脱字の修正が必要になった場合、投稿を削除するするしかない状態です。
+
+- 相談投稿フォームは文字数制限がある場合は、制限が分かるようにフォームに明示しましょう。
+
+- 相談は編集(edit/update)に対応しましょう、誤字脱字の修正が必要になった場合、相談を削除するするしかない状態です。
+
+- タグ編集機能は、ブラウザーのアドレスバーに直接｀/post_images/1/edit｀のように入力すると他のユーザーの投稿したタグを編集可能です、他のユーザーの投稿したタグの編集は不可にしましょう。
+
+- RailsのデフォルトタイムゾーンはUTC(協定時)となっているため、created_atメソッドやupdated_atメソッドを使って時間を表示させてみると日本時間から９時間差の表記になってしまう。この差分を埋めるため、タイムゾーンを日本時間に設定しましょう。
+　例：config/application.rbファイルに[config.time_zone = 'Tokyo']を記載しましょう。
+
+- 縦長・横長の画像を投稿すると潰れて表示されます。投稿画像は縦横比を保って表示しましょう。
+　例：一覧表示など（public/post_images/index.html.erb)
+    <%= image_tag post_image.image, :size => '250', class: "border" %><br>
+　　＊[:size => '250']指定を削除して[class: 'imdex-image']のようにclass(CSS)を指定します。
+    <%= image_tag post_image.image, class: "border index-image" %><br>
+　　＊assets/stylesheets/application.scssに以下を記述します。(object-fit:cover;で縦横比を保って表示します。）
+	.index-image{
+		width: 250px;
+		height: 250px;
+		object-fit: cover;
+	}
+　例：詳細ページなどので表示（public/post_images/show.html.erb)
+    <%= image_tag @post_image.get_image, :size => '430'%>
+　　＊[:size => '430']指定を削除して[class: 'show-image']のようにclass(CSS)を指定します。
+    <%= image_tag @post_image.get_image, class: 'show-image'%>
+　　＊assets/stylesheets/application.scssに以下を記述します。(object-fit:contain;で縦横比を保って表示します。）
+	.show-image{
+		width: 430px;
+		height: 430px;
+		object-fit: contain;
+	}
+
+# 今後チャレンジしてみるといい点
+-「いいね」「コメント」は非同期更新にチャレンジすると良いでしょう。
+
+- リファクタリングに挑戦してください。リファクタリングをすることで、理解しやすいコードになり、自分やほかのプログラマーの苦労を減らせるでしょう。さらに、リファクタリングの過程で理解を深められるのもメリットです。
+
+- GitHub Actions(CI/CDツール）で自動デプロイに対応しましょう。developブランチなどで開発して、デプロイの必要なタイミングでmainブランチにマージする運用が可能です。
+
+- ドメインを取得し、SSL(https)認証に対応しましょう。
+　・ドメイン取得でDNSサーバーの設定とDNS（Domain Name System）の仕組みを学習することで理解が深まりインフラの学習につながります。
+　・現在、WEBサービスをする上でSSL証明書は必須となっています。サイトの信頼性の向上につながります。
