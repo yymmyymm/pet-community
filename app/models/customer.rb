@@ -24,9 +24,10 @@ class Customer < ApplicationRecord
 
   has_one_attached :profile_image
 
-  validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
-  validates :name_kana, length: { minimum: 2, maximum: 20 }, uniqueness: true
-  validates :pen_name, length: { minimum: 2, maximum: 20 }, uniqueness: true
+  validates :name, length: { maximum: 20 }, uniqueness: true
+  validates :name_kana, length: { maximum: 20 }, uniqueness: true
+  validates :pen_name, length: { maximum: 20 }, uniqueness: true
+  validates :pet_name, length: { maximum: 20 }, uniqueness: true
   validates :introduce, length: { maximum: 200 }
 
   def get_profile_image(width, height)
@@ -52,7 +53,7 @@ class Customer < ApplicationRecord
   def self.search_for(content)
      Customer.where(['pen_name LIKE(?) OR pet_name LIKE(?) OR introduce LIKE(?)',"%#{content}%","%#{content}%" ,"%#{content}%"])
   end
-  
+
   #ゲストログイン
   def self.guest
     find_or_create_by!(name: 'guestuser',email: 'guest@example.com',name_kana: 'guestuser_kana',pen_name: 'pen_guestuser') do |customer|

@@ -48,7 +48,7 @@
 <% if @question.customer.is_deleted == false %>
   <div class="row justify-content-center align-items-center pt-3">
   <%= form_with model: [@question, @question_comment] do |f| %>
-    <%= f.text_area :comment,:size=>"50x3", placeholder: "回答をここに" %>
+    <%= f.text_area :comment,:size=>"50x3", placeholder: "回答をここに（200文字まで）" %>
    <%= f.submit "送信",class:"btn btn-sm btn-success" %>
    <% end %>
   </div>

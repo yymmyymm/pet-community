@@ -18,9 +18,9 @@
         <h5>画像（任意）</h5>
           <%= f.file_field :q_image, accept: "image/*" %>
         <h5>相談のタイトル</h5>
-          <%= f.text_field :title, placeholder:"タイトル" %>
+          <%= f.text_field :title, placeholder:"タイトル（100文字まで）" %>
         <h5>相談の本文</h5>
-          <%= f.text_area :caption,:size=>"30x4", placeholder:"相談の本文" %>
+          <%= f.text_area :caption,:size=>"30x4", placeholder:"相談の本文（200文字まで）" %>
         <%= f.submit '投稿',class:"btn btn-success mt-2" %>
         <% end %>
       </div>

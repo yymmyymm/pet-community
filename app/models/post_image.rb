@@ -9,7 +9,7 @@ class PostImage < ApplicationRecord
   belongs_to :genre
   has_many :view_counts, dependent: :destroy
 
-  validates :title, length: { minimum: 2, maximum: 100 },presence: true
+  validates :title, length: { maximum: 100 },presence: true
   validates :image, presence: true
   validates :caption, length: { maximum: 200 }
 

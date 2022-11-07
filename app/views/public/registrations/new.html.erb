@@ -9,14 +9,14 @@
     <%= render "public/shared/error_messages", resource: resource %>
 
   <div class="field form-group">
-    <%= f.label :"お名前" %><br>
+    <%= f.label :"お名前" %>&nbsp;<font size="2">20文字まで</font><br>
     <%= f.text_field :name, autofocus: true, class: 'form-control', placeholder: "家野子　一番"%><br>
-    <%= f.label :"フリガナ" %><br>
+    <%= f.label :"フリガナ" %>&nbsp;<font size="2">20文字まで</font><br>
     <%= f.text_field :name_kana, class: 'form-control', placeholder: "ウチノコ　イチバン" %>
   </div>
 
   <div class="field">
-    <%= f.label :"ユーザーネーム" %><br>
+    <%= f.label :"ユーザーネーム" %>&nbsp;<font size="2">20文字まで</font><br>
     <%= f.text_field :pen_name, class: 'form-control', placeholder: "ウッチー" %><br>
   </div>
 

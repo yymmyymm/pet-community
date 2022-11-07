@@ -16,11 +16,11 @@
      </div>
 <%= form_with model: @customer do |f| %>
   <div>
-    <label for="inputName">名前</label><br>
+    <label for="inputName">名前</label>&nbsp;<font size="2">20文字まで</font><br>
     <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%>
   </div>
   <div>
-    <label for="inputName">フリガナ</label><br>
+    <label for="inputName">フリガナ</label>&nbsp;<font size="2">20文字まで</font><br>
     <%= f.text_field :name_kana, id:"inputName", placeholder:"フリガナ"%>
   </div>
   <div>
@@ -28,7 +28,7 @@
     <%= f.email_field :email, id:"inputName", placeholder:"メールアドレス"%>
   </div>
   <div>
-  <label for="inputName">ユーザーネーム</label><br>
+  <label for="inputName">ユーザーネーム</label>&nbsp;<font size="2">20文字まで</font><br>
     <%= f.text_field :pen_name, id:"inputName", placeholder:"ハンドルネーム"%>
   </div>
   <div>
@@ -36,11 +36,11 @@
     <%= f.file_field :profile_image, placeholder: "ペット画像", accept: "image/*" %>
   </div>
   <div>
-  <label for="inputName">ペットネーム</label><br>
+  <label for="inputName">ペットネーム</label>&nbsp;<font size="2">20文字まで</font><br>
     <%= f.text_field :pet_name, id:"inputName", placeholder:"ペットネーム"%>
   </div>
   <div>
-  <label for="inputName">ペット紹介</label><br>
+  <label for="inputName">ペット紹介</label>&nbsp;<font size="2">200文字まで</font><br>
     <%= f.text_area :introduce,:size=>"33x4", id:"inputName", placeholder:"ペット紹介"%>
   </div>
   <div>
