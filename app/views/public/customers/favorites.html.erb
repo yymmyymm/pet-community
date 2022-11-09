@@ -4,7 +4,7 @@
   <div class="img-thumbnail shadow m-2 mr-2 ml-2"style="background-color: #fffafa;">
       <div class="mx-1">
         <%= link_to post_image_path(post_image), class: "text-dark nav-link" do %>
-        <%= image_tag post_image.image, class: "border index-image"%><br>
+        <%= image_tag post_image.image, class: "index-image"%><br>
         <div class="post_title">
           <%= post_image.title.truncate(10) %>
         </div>
