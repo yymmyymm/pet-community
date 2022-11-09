@@ -73,6 +73,18 @@ left: 50%;
 padding: 0;
 }
 
+.index-image{
+	width: 250px;
+	height: 250px;
+	object-fit: cover;
+}
+
+.show-image{
+	width: 430px;
+	height: 430px;
+	object-fit: contain;
+}
+
 .pagination>li>a {
   border: none;
   color: #696969;
