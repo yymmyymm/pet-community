@@ -51,7 +51,7 @@
       <div class="img-thumbnail shadow m-1 mr-3 ml-3"style="background-color: #fffafa;">
       <div class="mx-1">
         <%= link_to post_image_path(post_image), class: "text-dark nav-link" do %>
-        <%= image_tag post_image.image, class: "index-image" %><br>
+        <%= image_tag post_image.image, :size => '250x200' %><br>
         <div class="post_title">
           <%= post_image.title.truncate(13) %>
         </div>
