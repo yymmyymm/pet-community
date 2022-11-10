@@ -40,7 +40,7 @@
           </span>ちゃん<br>
         <% end %>
       <div class="view">
-          <%= @post_image.created_at.strftime('%Y/%m/%d') %>&nbsp;
+          <%= @post_image.created_at.strftime("%Y/%m/%d %H:%M") %>&nbsp;
           <i class="fas fa-eye"></i><%= @post_image.view_counts.count %>&nbsp;
           <i class="fas fa-handshake"></i><%= @post_image.customer.followers.count %>&nbsp;
           <i class="fas fa-comments"></i><%= @post_image.post_comments.count %>&nbsp;
@@ -85,7 +85,7 @@
         <% else %>
         退会済みユーザー&nbsp;
         <% end %>
-      <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+      <%= post_comment.created_at.strftime("%Y/%m/%d %H:%M") %>
     <div class="comment m-1">
       <p><%= post_comment.comment %></p>
     </div>

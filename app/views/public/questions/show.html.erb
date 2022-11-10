@@ -28,7 +28,7 @@
           <span class="pet_title">○○
           </span>ちゃん<br>
         <% end %>
-          <%= @question.created_at.strftime('%Y/%m/%d') %>
+          <%= @question.created_at.strftime("%Y/%m/%d %H:%M") %>
         </div>
         <div class="col-2">
           <% if current_customer.name != "guestuser" %>
@@ -64,7 +64,7 @@
       <% else %>
         退会済みユーザー
       <% end %>
-    <%= question_comment.created_at.strftime('%Y/%m/%d') %>
+    <%= question_comment.created_at.strftime("%Y/%m/%d %H:%M") %>
     <div class="comment m-1">
     <%= question_comment.comment %>
     </div>
