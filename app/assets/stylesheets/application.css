@@ -74,9 +74,9 @@ padding: 0;
 }
 
 .index-image{
-	width: 250px;
-	height: 250px;
-	object-fit: contain;
+	width: 100px;
+	height: 150px;
+	object-fit: cover;
 }
 
 .show-image{
