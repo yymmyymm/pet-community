@@ -1,4 +1,4 @@
-<h4 class="mx-4 mb-4">フォロワー一覧</h4>
+<h4 class="mx-4 mb-4"><%= @customer.pen_name %>&nbsp;さんのフォロワー一覧</h4>
 <% if @customers.exists? %>
   <%= render 'public/customers/index', customers: @customers %>
 <% else %>
