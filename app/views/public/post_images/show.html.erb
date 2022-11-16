@@ -6,9 +6,6 @@
       <%= link_to tag.name,search_tag_path(tag_id: tag.id), class:"ec-genre-list-item text-dark"%>
      </div>
     <% end %>
-    <% if @post_image.customer == current_customer %>
-      <%= link_to "タグ編集", edit_post_image_path(@post_image.id) %>
-    <% end %>
   </div>
 
   <div class='row justify-content-center align-items-center'>
@@ -53,6 +50,9 @@
           <% end %>
       </div>
       <div class="p-2 text-right">
+        <% if @post_image.customer == current_customer %>
+          <%= link_to "投稿編集ページ", edit_post_image_path(@post_image.id),class:"btn btn-primary"  %>
+        <% end %>
         <% if @post_image.customer.is_deleted == false %>
           <%= link_to "会員詳細ページ" ,customer_path(@post_image.customer),class:"btn btn-secondary" %>
          <% end %>
