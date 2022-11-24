@@ -4,7 +4,6 @@
         <div class="mb-4">
         <h4>お問い合わせ</h4>
       </div>
-
       <div class="correct-msg-box">
         <% if @contact.errors.any? %>
           <div id="error_explanation">
@@ -14,7 +13,6 @@
             </ul>
           </div>
         <% end %>
-
       <%= form_with(model: @contact, local: true) do |f| %>
       <div class="correct-msg-main">
         <div class="contact-form">
