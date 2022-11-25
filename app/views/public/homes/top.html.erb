@@ -2,7 +2,6 @@
   <div class="about">
     <%= link_to "「ウチの子いちばん！」とは？", about_path, class: 'link text-dark' %>
   </div>
-
   <h4 class="text-center">ウチの子ベストショット！</h4>
     <div class="row justify-content-center align-items-center m-3">
     <% if @post_image != nil %>
@@ -44,7 +43,6 @@
       <% end %>
     </div>
   </div>
-
     <h4 class="mx-4 mb-4">新着の投稿</h4>
     <div class="row justify-content-center align-items-center ">
       <% @post_images.last(4).reverse.each do |post_image|%>
@@ -84,7 +82,6 @@
         </div>
       <% end %>
     </div>
-
   <div class="row">
     <div class="m-auto mt-1 mr-5">
       <% if customer_signed_in? %>
@@ -92,8 +89,6 @@
       <% end %>
     </div>
   </div>
-
-
 <h4 class="mx-4 mb-4">新着の相談</h4>
 <div class="row justify-content-center align-items-center">
 <div class="col-8">
@@ -124,7 +119,6 @@
 <% end %>
 </div>
 </div>
-
 <div class="row">
     <div class="m-auto mt-1 mr-5">
       <% if customer_signed_in? %>
@@ -132,7 +126,6 @@
       <% end %>
     </div>
   </div>
-
   <% if customer_signed_in? %>
   <h5 class="mx-3">ジャンル検索</h5>
   <div class="row justify-content align-items-center mx-5">
@@ -142,7 +135,6 @@
   </div>
     <% end %>
   </div>
-
   <h5 class="mx-3">タグ検索</h4>
   <div class="row justify-content align-items-center mx-5 mb-3 ">
     <% @tag_list.each do |list|%>
