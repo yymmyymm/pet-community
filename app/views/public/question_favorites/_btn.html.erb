@@ -3,6 +3,7 @@
     <i class="fas fa-star" aria-hidden="true" style="color: #ff69b4;"></i>
     <%= question.question_favorites.count %>
   <% end %>
+  
 <% else %>
   <%= link_to question_question_favorites_path(question), method: :post, class: "text-dark nav-link" do %>
     <i class="fas fa-star" aria-hidden="true" style="color: #00bfff;"></i>
