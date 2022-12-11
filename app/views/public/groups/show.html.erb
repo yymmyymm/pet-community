@@ -21,7 +21,6 @@
              <li style="list-style: none;"><%= customer.name %></li>
             <% end %>
           </td>
-          
           <td>
             <% if @group.is_owned_by?(current_customer) %>
               <%= link_to '編集', edit_group_path(@group), class: "btn btn-sm btn-success mt-1" %>
